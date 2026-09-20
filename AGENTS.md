@@ -137,7 +137,7 @@ Use `GS-` prefix for commit messages.
 No test framework. Don't create test files unless asked.
 
 <!-- >>> bti-os-project (managed by BTI OS — refresh with `bti sync`; edit app/public/onboarding/TEAM.md in the bti-os repo, not here) >>> -->
-<!-- bti-os-project: QR · d2f1cb47eb39 · rendered 2026-09-19 -->
+<!-- bti-os-project: QR · db421e9e37d5 · rendered 2026-09-20 -->
 
 # QR — Internal Tool
 
@@ -317,7 +317,7 @@ being asked.
   only where the code cannot state a constraint the next reader needs. Not to
   narrate what a change does, justify it to a reviewer, or record what used to
   break. Keep the ones that survive to a line or two; anything that wants a
-  paragraph wants to be in the repo's `CLAUDE.md` instead.
+  paragraph wants to be in the repo's `AGENTS.md` instead.
 
   **Task ids belong in the commit message and the branch name, never in the
   code.** `git blame` already leads from any line to the commit that wrote it,
@@ -330,13 +330,23 @@ being asked.
 
 - **Mark every repo as a BTI project: `bti init` in the checkout, then commit
   what it wrote.** It asks BTI OS for two things and writes both: a managed
-  block at the end of the root `CLAUDE.md` (the project's story from its BTI OS
+  block at the end of the root `AGENTS.md` (the project's story from its BTI OS
   record, followed by this guide, between `bti-os-project` markers, stamped
   with a version), and a `.claude/settings.json` carrying the code and the
   switch that turns usage export on. `bti sync` refreshes both after this
   guide or the project record changes; nothing rewrites a checkout behind
   your back, so run it and commit the diff. A clone with the block needs no
   global install to know which project it is or how we work.
+
+  **`AGENTS.md` is the only repo-level instruction file.** Claude Code, Codex
+  and the rest all read it; Claude Code reads it only while no `CLAUDE.md` or
+  `CLAUDE.local.md` sits in the checkout or any folder above it, so a repo
+  never carries a root `CLAUDE.md` beside it. `bti init` folds an existing one
+  in (its own text above the block) and removes it; commit the removal with
+  the rest. `.claude/rules/` and your `~/.claude/CLAUDE.md` keep loading
+  alongside. Two things to know when checking it took: `/context` does not
+  list `AGENTS.md`, so look for the `AGENTS.md loaded` line at session start
+  instead, and the first session after a Claude Code upgrade ignores it.
 
   The settings file it writes:
 
