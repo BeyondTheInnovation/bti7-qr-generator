@@ -182,7 +182,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
             </span>
           </div>
           <span style={{ color: "#555555", fontSize: 16, letterSpacing: "0.05em" }}>
-            qr.gamified.studio/blog
+            qr.beyondtheinnovation.com/blog
           </span>
         </div>
       </div>

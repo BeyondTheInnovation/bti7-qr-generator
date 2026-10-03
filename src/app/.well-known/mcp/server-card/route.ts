@@ -8,17 +8,17 @@ const serverCard = {
   title: 'QR Code Generator',
   description:
     'Generate QR codes for URLs, vCards, WiFi, email, phone, SMS, calendar events, MeCards, X profiles, and plain text. No auth required.',
-  websiteUrl: 'https://qr.gamified.studio',
+  websiteUrl: 'https://qr.beyondtheinnovation.com',
   icons: [
     {
-      src: 'https://qr.gamified.studio/favicon.svg',
+      src: 'https://qr.beyondtheinnovation.com/favicon.svg',
       mimeType: 'image/svg+xml',
     },
   ],
   remotes: [
     {
       type: 'streamable-http',
-      url: 'https://qr.gamified.studio/mcp',
+      url: 'https://qr.beyondtheinnovation.com/mcp',
       supportedProtocolVersions: ['2025-03-26', '2025-06-18', '2025-11-25'],
       authentication: { required: false },
     },

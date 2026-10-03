@@ -9,7 +9,7 @@ readTime: 7
 
 ## Skip the form, talk to your AI
 
-**Quick answer:** You can generate QR codes by asking an AI assistant like Claude in plain English. This works through MCP (Model Context Protocol), which lets AI assistants call external tools, including our QR generator at [qr.gamified.studio](https://qr.gamified.studio).
+**Quick answer:** You can generate QR codes by asking an AI assistant like Claude in plain English. This works through MCP (Model Context Protocol), which lets AI assistants call external tools, including our QR generator at [qr.beyondtheinnovation.com](https://qr.beyondtheinnovation.com).
 
 QR code generators all work the same way. You open a website, fill out a form, pick your colors, download the image. Need ten codes? Do that ten times. Mistype the WiFi password? Start over. It is fine for one-offs, genuinely tedious for anything more.
 
@@ -36,7 +36,7 @@ Here is how to go from zero to generating your first QR code with an AI assistan
 **2. Add the MCP server.** Point your client at the remote endpoint:
 
 ```
-https://qr.gamified.studio/mcp
+https://qr.beyondtheinnovation.com/mcp
 ```
 
 No API key, no account, no authentication. You add the URL to your client's MCP configuration and that is it. Full setup details are on the [MCP documentation page](/docs/mcp).
@@ -91,7 +91,7 @@ Three separate tool calls, three PNGs back. If you need to do this for a larger 
 
 Calls `generate_event_qr` with the date, time, location, and title. The resulting QR code adds the event directly to any calendar app.
 
-> "Generate a QR code for https://qr.gamified.studio with the neon color scheme."
+> "Generate a QR code for https://qr.beyondtheinnovation.com with the neon color scheme."
 
 The simplest case. Calls `generate_url_qr` with a URL and a skin name.
 
@@ -101,7 +101,7 @@ The simplest case. Calls `generate_url_qr` with a URL and a skin name.
 
 We have three interfaces to the same QR generator, and each one fits a different workflow.
 
-**Web form** at [qr.gamified.studio](https://qr.gamified.studio) is the fastest option when you need one QR code and you know exactly what fields to fill in. You see a live preview as you type. If you have never generated a QR code before, the [free QR code generator guide](/blog/free-qr-code-generator) walks through how it works.
+**Web form** at [qr.beyondtheinnovation.com](https://qr.beyondtheinnovation.com) is the fastest option when you need one QR code and you know exactly what fields to fill in. You see a live preview as you type. If you have never generated a QR code before, the [free QR code generator guide](/blog/free-qr-code-generator) walks through how it works.
 
 **CLI** is good when you are scripting or automating. You can pipe output into other commands, loop over a list of URLs, or integrate QR generation into a build step. It runs locally with no network dependency after install.
 
@@ -127,7 +127,7 @@ The local server is also useful if you are already working in a terminal. If you
 
 The web app, CLI, and MCP server share the same encoding logic. There is no watered-down "AI version" with fewer options. Whatever you can do in the web interface, you can do through natural language.
 
-If you want to try it, the web app is at [qr.gamified.studio](https://qr.gamified.studio). To connect your AI assistant directly, point it at the MCP endpoint and start asking.
+If you want to try it, the web app is at [qr.beyondtheinnovation.com](https://qr.beyondtheinnovation.com). To connect your AI assistant directly, point it at the MCP endpoint and start asking.
 
 ---
 
@@ -135,7 +135,7 @@ If you want to try it, the web app is at [qr.gamified.studio](https://qr.gamifie
 
 ### Q: Which AI assistants support MCP?
 
-Any assistant that implements the Model Context Protocol. Claude has native MCP support in Claude Code and the Claude desktop app. Other MCP-compatible clients can connect to the remote endpoint at `https://qr.gamified.studio/mcp`.
+Any assistant that implements the Model Context Protocol. Claude has native MCP support in Claude Code and the Claude desktop app. Other MCP-compatible clients can connect to the remote endpoint at `https://qr.beyondtheinnovation.com/mcp`.
 
 ### Q: Do I need an API key or account?
 

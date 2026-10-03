@@ -58,7 +58,7 @@ function CliPopover() {
         </PopoverHeader>
         <div className="space-y-2">
           <p className="text-xs text-muted-foreground">Clone and run with Bun:</p>
-          <CopySnippet text="bunx github:gamifiedstudio/qr-gamified.studio --help" />
+          <CopySnippet text="bunx github:BeyondTheInnovation/bti7-qr-generator --help" />
           <p className="text-xs text-muted-foreground">Or run locally:</p>
           <CopySnippet text="bun run src/cli/index.ts --help" />
         </div>
@@ -96,12 +96,12 @@ function McpPopover() {
         </PopoverHeader>
         <div className="space-y-2">
           <p className="text-xs text-muted-foreground">Add to Claude Desktop or any MCP client:</p>
-          <CopySnippet text="https://qr.gamified.studio/mcp" />
+          <CopySnippet text="https://qr.beyondtheinnovation.com/mcp" />
           <div className="bg-muted p-3 font-mono text-[11px] leading-relaxed text-muted-foreground">
             <span className="text-foreground">{'{'}</span>{'\n'}
             {'  '}<span className="text-foreground">&quot;mcpServers&quot;</span>: {'{'}{'\n'}
             {'    '}<span className="text-foreground">&quot;qr-generator&quot;</span>: {'{'}{'\n'}
-            {'      '}<span className="text-foreground">&quot;url&quot;</span>: <span className="text-green-500">&quot;https://qr.gamified.studio/mcp&quot;</span>{'\n'}
+            {'      '}<span className="text-foreground">&quot;url&quot;</span>: <span className="text-green-500">&quot;https://qr.beyondtheinnovation.com/mcp&quot;</span>{'\n'}
             {'    '}{'}'}{'\n'}
             {'  '}{'}'}{'\n'}
             <span className="text-foreground">{'}'}</span>

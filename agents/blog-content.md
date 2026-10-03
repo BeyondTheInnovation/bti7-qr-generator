@@ -8,9 +8,9 @@ Instructions for creating blog posts on QR Gamified Studio. Every post is a sing
 |-----|-------|
 | Site name | QR Gamified Studio |
 | Short name | QR Gamified |
-| Base URL | `https://qr.gamified.studio` |
-| Blog URL | `https://qr.gamified.studio/blog` |
-| Domain | `qr.gamified.studio` |
+| Base URL | `https://qr.beyondtheinnovation.com` |
+| Blog URL | `https://qr.beyondtheinnovation.com/blog` |
+| Domain | `qr.beyondtheinnovation.com` |
 
 ## File Location
 

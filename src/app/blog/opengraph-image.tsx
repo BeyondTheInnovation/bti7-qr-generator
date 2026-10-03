@@ -122,7 +122,7 @@ export default function Image() {
               }}
             />
             <span style={{ color: "#e5e5e5", fontSize: 16, opacity: 0.4 }}>
-              qr.gamified.studio
+              qr.beyondtheinnovation.com
             </span>
           </div>
         </div>

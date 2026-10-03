@@ -20,7 +20,7 @@ We built three ways to handle this: a web tool that takes CSV uploads, a CLI you
 If your data is already in a spreadsheet, this is the fastest path. The [bulk vCard generator](/vcard/bulk) takes a CSV and spits out a ZIP of QR code images.
 
 1. Prepare a CSV with your contact data. You need at least one of `firstName`, `lastName`, or `org` per row.
-2. Upload it at [qr.gamified.studio/vcard/bulk](/vcard/bulk).
+2. Upload it at [qr.beyondtheinnovation.com/vcard/bulk](/vcard/bulk).
 3. Preview the parsed contacts, pick your QR styling (colors, dot patterns, corner styles).
 4. Download everything as a ZIP.
 
@@ -108,7 +108,7 @@ The bulk use case is straightforward. Paste a list of 15 team members into Claud
 
 You can connect two ways:
 
-- Remote: point any MCP client to `https://qr.gamified.studio/mcp`
+- Remote: point any MCP client to `https://qr.beyondtheinnovation.com/mcp`
 - Local: run `bun run mcp` for stdio transport with Claude Code
 
 It supports all 10 QR code types, not just vCards. You could generate 50 WiFi codes for different office locations the same way.
@@ -161,7 +161,7 @@ One thing I learned the hard way: always spot-check the last few rows of your CS
 
 ### Q: How many QR codes can I generate at once?
 
-The web bulk tool at [qr.gamified.studio/vcard/bulk](/vcard/bulk) handles up to 500 contacts per CSV upload. The CLI has no built-in limit; generate as many as your script produces. The MCP server handles requests one at a time, so batch size depends on your AI client.
+The web bulk tool at [qr.beyondtheinnovation.com/vcard/bulk](/vcard/bulk) handles up to 500 contacts per CSV upload. The CLI has no built-in limit; generate as many as your script produces. The MCP server handles requests one at a time, so batch size depends on your AI client.
 
 ### Q: What file format does the bulk tool accept?
 
@@ -173,7 +173,7 @@ Yes. The web bulk tool and the CLI both support color skins, dot patterns, corne
 
 ### Q: Do I need to install anything?
 
-Not for the web tool. It runs in your browser at [qr.gamified.studio/vcard/bulk](/vcard/bulk). The CLI needs [Bun](https://bun.sh) and the cloned repo. The MCP server needs an MCP-compatible client like Claude.
+Not for the web tool. It runs in your browser at [qr.beyondtheinnovation.com/vcard/bulk](/vcard/bulk). The CLI needs [Bun](https://bun.sh) and the cloned repo. The MCP server needs an MCP-compatible client like Claude.
 
 ### Q: Can I bulk-generate QR codes for types other than vCards?
 

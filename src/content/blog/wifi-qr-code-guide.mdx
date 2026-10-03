@@ -76,7 +76,7 @@ Dental offices, car dealerships, hair salons. Anywhere people sit and wait, they
 
 ### Web app
 
-Head to [qr.gamified.studio/wifi](/wifi). Fill in your network name, password, and encryption type. Customize the look if you want. Download as PNG for screens or SVG for print (SVG scales to any size without getting blurry). The tool is [completely free](/blog/free-qr-code-generator) with no watermarks or sign-up.
+Head to [qr.beyondtheinnovation.com/wifi](/wifi). Fill in your network name, password, and encryption type. Customize the look if you want. Download as PNG for screens or SVG for print (SVG scales to any size without getting blurry). The tool is [completely free](/blog/free-qr-code-generator) with no watermarks or sign-up.
 
 ### CLI
 
@@ -98,7 +98,7 @@ The [MCP server](/docs/mcp) lets AI assistants like Claude generate WiFi QR code
 
 > "Generate a WiFi QR code for network CafeWiFi with password freshbrew99, use the sunset skin."
 
-The remote endpoint is at `qr.gamified.studio/mcp`. For local use with Claude Code, run `bun run mcp` over stdio.
+The remote endpoint is at `qr.beyondtheinnovation.com/mcp`. For local use with Claude Code, run `bun run mcp` over stdio.
 
 ---
 
@@ -162,7 +162,7 @@ If your SSID contains semicolons, colons, backslashes, or commas, they need to b
 
 If you rotate passwords regularly (and you should for any guest-facing network), you need a process for updating the QR code too. Otherwise you end up with a framed code in the lobby that hasn't worked in three months.
 
-For a single location, it's straightforward. Go to [qr.gamified.studio/wifi](/wifi), enter the new credentials, download the file, and reprint. I keep the same filename each time so I can just drop it into the same print template.
+For a single location, it's straightforward. Go to [qr.beyondtheinnovation.com/wifi](/wifi), enter the new credentials, download the file, and reprint. I keep the same filename each time so I can just drop it into the same print template.
 
 For multiple locations or automated rotation, the CLI is better. You can write a short script that reads the new password from your router's API or a config file, generates the QR code, and outputs it to a shared drive. I've helped a coworking space set this up with a cron job that runs on the first of each month. The new QR code gets emailed to the office manager, who prints and swaps it. Total hands-off after the initial setup.
 

@@ -10,7 +10,7 @@ export interface PageSEO {
   output: string;   // what happens when scanned
 }
 
-const BASE_URL = 'https://qr.gamified.studio';
+const BASE_URL = 'https://qr.beyondtheinnovation.com';
 
 export const PAGE_SEO: Record<string, PageSEO> = {
   url: {

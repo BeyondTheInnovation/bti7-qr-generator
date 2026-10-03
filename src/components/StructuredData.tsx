@@ -3,7 +3,7 @@ export function WebApplicationSchema() {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: 'Free QR Code Generator',
-    url: 'https://qr.gamified.studio/',
+    url: 'https://qr.beyondtheinnovation.com/',
     description:
       'Generate custom QR codes for URLs, vCards, WiFi passwords, emails, phone numbers, SMS, calendar events, MeCards, and X/Twitter profiles. Free, no sign-up required.',
     applicationCategory: 'UtilityApplication',

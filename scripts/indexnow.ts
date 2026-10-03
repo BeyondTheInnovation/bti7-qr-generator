@@ -11,9 +11,9 @@
 import fs from "fs";
 import path from "path";
 
-const BASE_URL = "https://qr.gamified.studio";
+const BASE_URL = "https://qr.beyondtheinnovation.com";
 const KEY = "501b5d6fd657e151255067efc76115c9";
-const HOST = "qr.gamified.studio";
+const HOST = "qr.beyondtheinnovation.com";
 const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
 
 const BLOG_DIR = path.join(process.cwd(), "src/content/blog");

@@ -489,7 +489,7 @@ export function createMcpServer() {
     version: '1.0.0',
   }, {
     instructions: [
-      'You are connected to the qr-generator MCP server at qr.gamified.studio.',
+      'You are connected to the qr-generator MCP server at qr.beyondtheinnovation.com.',
       'It generates QR code images (base64 PNG) for various data types.',
       '',
       'Tool selection guide:',

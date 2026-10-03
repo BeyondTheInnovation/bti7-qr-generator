@@ -29,7 +29,7 @@ export default function PrivacyPolicy() {
             <h2 className="text-xl font-semibold mb-3">Overview</h2>
             <p>
               QR Gamified Studio ("we", "us", "our") operates the QR code generator at{' '}
-              <strong>qr.gamified.studio</strong>, including the web application, CLI tool, and
+              <strong>qr.beyondtheinnovation.com</strong>, including the web application, CLI tool, and
               MCP (Model Context Protocol) server. We are committed to protecting your privacy.
             </p>
           </section>
@@ -83,7 +83,7 @@ export default function PrivacyPolicy() {
           <section>
             <h2 className="text-xl font-semibold mb-3">MCP Server (Remote)</h2>
             <p>
-              The remote MCP endpoint at <code className="rounded bg-[var(--muted)] px-1.5 py-0.5 text-sm">qr.gamified.studio/mcp</code> processes
+              The remote MCP endpoint at <code className="rounded bg-[var(--muted)] px-1.5 py-0.5 text-sm">qr.beyondtheinnovation.com/mcp</code> processes
               tool calls over the Streamable HTTP transport. Specifically:
             </p>
             <ul className="list-disc pl-6 space-y-2 mt-3">

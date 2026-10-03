@@ -2,7 +2,7 @@
 
 Multi-format QR code generator with a web app, blog, CLI tool, and MCP server. Built with Next.js 15 and React 19.
 
-**Live at [qr.gamified.studio](https://qr.gamified.studio)**
+**Live at [qr.beyondtheinnovation.com](https://qr.beyondtheinnovation.com)**
 
 ## Features
 
@@ -117,7 +117,7 @@ The MCP server is also available over HTTP at `/mcp` on the production site.
   "mcpServers": {
     "vcard-qr": {
       "command": "bun",
-      "args": ["run", "/path/to/qr-gamified.studio/src/mcp/stdio.ts"]
+      "args": ["run", "/path/to/bti7-qr-generator/src/mcp/stdio.ts"]
     }
   }
 }

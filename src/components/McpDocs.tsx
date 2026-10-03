@@ -79,7 +79,7 @@ export default function McpDocs() {
   "mcpServers": {
     "qr-generator": {
       "type": "streamable-http",
-      "url": "https://qr.gamified.studio/mcp"
+      "url": "https://qr.beyondtheinnovation.com/mcp"
     }
   }
 }`} />
@@ -98,7 +98,7 @@ export default function McpDocs() {
     "qr-generator": {
       "command": "bun",
       "args": ["run", "src/mcp/stdio.ts"],
-      "cwd": "/path/to/qr-gamified.studio"
+      "cwd": "/path/to/bti7-qr-generator"
     }
   }
 }`} />
@@ -333,7 +333,7 @@ export default function McpDocs() {
           <h2 className="text-xl font-semibold mb-3">Technical Details</h2>
           <ul className="space-y-2 text-sm">
             <li><strong>Protocol:</strong> MCP (Model Context Protocol) over Streamable HTTP</li>
-            <li><strong>Endpoint:</strong> <code className="bg-[var(--muted)] px-1.5 py-0.5 text-xs">https://qr.gamified.studio/mcp</code></li>
+            <li><strong>Endpoint:</strong> <code className="bg-[var(--muted)] px-1.5 py-0.5 text-xs">https://qr.beyondtheinnovation.com/mcp</code></li>
             <li><strong>Authentication:</strong> None required</li>
             <li><strong>Session:</strong> Stateful (UUID-based session IDs)</li>
             <li><strong>vCard format:</strong> vCard 3.0 (RFC 2426)</li>

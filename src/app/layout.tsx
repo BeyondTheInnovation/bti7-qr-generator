@@ -10,7 +10,7 @@ import '@/index.css';
 
 const GA_ID = 'G-R2J5HK6LX2';
 
-const BASE_URL = 'https://qr.gamified.studio';
+const BASE_URL = 'https://qr.beyondtheinnovation.com';
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

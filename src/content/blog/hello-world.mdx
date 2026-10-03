@@ -7,7 +7,7 @@ tags: ["BTS", "Story"]
 readTime: 8
 ---
 
-**Quick answer:** We needed ten vCard QR codes for a client's email signatures. Every free QR code generator we tried was slow, manual, and hostile to batch work. So we built [our own QR code generator](https://qr.gamified.studio) with a web app, CLI, and MCP server in a single workday.
+**Quick answer:** We needed ten vCard QR codes for a client's email signatures. Every free QR code generator we tried was slow, manual, and hostile to batch work. So we built [our own QR code generator](https://qr.beyondtheinnovation.com) with a web app, CLI, and MCP server in a single workday.
 
 ## It started with email signatures
 
@@ -94,7 +94,7 @@ In practice, you tell Claude something like:
 
 Claude calls `generate_vcard_qr` with the right parameters, gets back a PNG, and shows it to you. For the BTA project, we gave Claude the team list and it called the tool ten times. The whole email signature task, the one that made us quit two different QR generators, was done in minutes.
 
-The server runs locally over stdio (for Claude Code) or remotely at `qr.gamified.studio/mcp` for any MCP client. The remote endpoint means you don't need to clone the repo or install anything. Just point your MCP client at the URL.
+The server runs locally over stdio (for Claude Code) or remotely at `qr.beyondtheinnovation.com/mcp` for any MCP client. The remote endpoint means you don't need to clone the repo or install anything. Just point your MCP client at the URL.
 
 ---
 
@@ -170,7 +170,7 @@ Next time you're 20 minutes into wrestling with a SaaS tool that almost does wha
 
 ### Q: Is the QR code generator actually free?
 
-Yes. No accounts, no watermarks, no limits. It's live at [qr.gamified.studio](https://qr.gamified.studio).
+Yes. No accounts, no watermarks, no limits. It's live at [qr.beyondtheinnovation.com](https://qr.beyondtheinnovation.com).
 
 ### Q: Can I use the CLI without installing anything?
 
@@ -178,7 +178,7 @@ You need [Bun](https://bun.sh) installed. After cloning the repo, `bun run cli` 
 
 ### Q: How do I connect the MCP server to Claude?
 
-Add the remote URL (`https://qr.gamified.studio/mcp`) to your MCP client config, or run `bun run mcp` locally for Claude Code. Setup instructions are on the [MCP docs page](/docs/mcp).
+Add the remote URL (`https://qr.beyondtheinnovation.com/mcp`) to your MCP client config, or run `bun run mcp` locally for Claude Code. Setup instructions are on the [MCP docs page](/docs/mcp).
 
 ### Q: What formats can I export QR codes in?
 

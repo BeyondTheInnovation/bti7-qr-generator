@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: { userAgent: "*", allow: "/" },
-    sitemap: "https://qr.gamified.studio/sitemap.xml",
-    host: "https://qr.gamified.studio",
+    sitemap: "https://qr.beyondtheinnovation.com/sitemap.xml",
+    host: "https://qr.beyondtheinnovation.com",
   };
 }

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     siteName: "QR Gamified Studio",
     type: "website",
     locale: "en_US",
-    url: "https://qr.gamified.studio/blog",
+    url: "https://qr.beyondtheinnovation.com/blog",
   },
 };
 

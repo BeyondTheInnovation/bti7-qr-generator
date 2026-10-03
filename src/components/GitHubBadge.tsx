@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Star } from 'lucide-react';
 
-const REPO = 'gamifiedstudio/qr-gamified.studio';
+const REPO = 'BeyondTheInnovation/bti7-qr-generator';
 const REPO_URL = `https://github.com/${REPO}`;
 
 export function GitHubBadge() {

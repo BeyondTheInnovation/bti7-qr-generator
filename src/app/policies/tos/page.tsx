@@ -29,7 +29,7 @@ export default function TermsOfService() {
             <h2 className="text-xl font-semibold mb-3">Overview</h2>
             <p>
               QR Gamified Studio ("we", "us", "our") operates the QR code generator at{' '}
-              <strong>qr.gamified.studio</strong>, including the web application, CLI tool, and
+              <strong>qr.beyondtheinnovation.com</strong>, including the web application, CLI tool, and
               MCP (Model Context Protocol) server. These Terms of Service ("Terms") govern your
               use of the service.
             </p>
@@ -132,7 +132,7 @@ export default function TermsOfService() {
             <p className="mb-3">
               The remote MCP endpoint at{' '}
               <code className="rounded bg-[var(--muted)] px-1.5 py-0.5 text-sm">
-                qr.gamified.studio/mcp
+                qr.beyondtheinnovation.com/mcp
               </code>{' '}
               is provided for integration with AI assistants and other MCP-compatible clients.
               The following additional terms apply:
