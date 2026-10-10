@@ -1,3 +1,12 @@
+---
+paths:
+  - "src/content/blog/**"
+  - "src/app/blog/**"
+  - "src/lib/blog.ts"
+  - "src/lib/toc.ts"
+  - "src/components/Blog*.tsx"
+---
+
 # Blog Content Guidelines
 
 Instructions for creating blog posts on QR Gamified Studio. Every post is a single MDX file — no CMS, no database.

@@ -1,87 +1,45 @@
 # QR Code Generator (BTI)
 
-Multi-format QR code generator with web app, blog, CLI, and MCP server. Next.js 15 App Router deployed on Railway.
+Multi-format QR code generator with web app, blog, CLI, and MCP server. Next.js 16 App Router.
 
 ## Stack
 
-| Layer      | Tech                                              |
-| ---------- | ------------------------------------------------- |
-| Framework  | Next.js 15, React 19, App Router                  |
-| Language   | TypeScript (strict mode)                           |
-| Styling    | Tailwind v4, CSS variables (oklch), @tailwindcss/postcss |
-| Components | shadcn/ui (Radix), CVA for variants               |
-| Icons      | lucide-react                                       |
-| Dark mode  | next-themes (defaultTheme="dark")                  |
-| QR         | qr-code-styling (web), qrcode (CLI/MCP)           |
+| Layer      | Tech                                                                   |
+| ---------- | ---------------------------------------------------------------------- |
+| Framework  | Next.js 16, React 19, App Router                                       |
+| Styling    | Tailwind v4, CSS variables (oklch)                                     |
+| Components | shadcn/ui (Radix)                                                      |
+| QR         | qr-code-styling (web), qrcode (CLI/MCP)                                |
 | Blog       | MDX (next-mdx-remote/rsc), gray-matter, rehype-pretty-code, remark-gfm |
-| CLI        | Bun executable (`bun run src/cli/index.ts`)        |
-| MCP        | @modelcontextprotocol/sdk (route handler + stdio)  |
+| CLI        | Bun executable (`bun run src/cli/index.ts`)                            |
+| MCP        | @modelcontextprotocol/sdk (route handler + stdio)                      |
 
 ## Structure
 
 ```
 src/
-  app/
-    layout.tsx               # Root layout (ThemeProvider, fonts, globals)
-    page.tsx                 # Home — QR generator (default URL type)
-    [type]/page.tsx          # QR generator per type (url, text, wifi, etc.)
-    vcard/
-      page.tsx               # vCard QR generator
-      bulk/page.tsx          # Bulk vCard generation
-    blog/
-      layout.tsx             # Blog metadata template
-      page.tsx               # Blog listing with tag filtering
-      opengraph-image.tsx    # Blog listing OG image (next/og)
-      [slug]/
-        page.tsx             # Blog post (MDX rendering, JSON-LD, ToC)
-        opengraph-image.tsx  # Per-post OG image (next/og)
-    docs/mcp/page.tsx        # MCP server documentation
-    policies/
-      privacy/page.tsx       # Privacy policy
-      tos/page.tsx           # Terms of service
-    privacy/route.ts         # Redirect → /policies/privacy
-    mcp/route.ts             # MCP endpoint (Streamable HTTP)
-    sitemap.ts               # Dynamic sitemap
-    robots.ts                # robots.txt
-  components/
-    ui/                      # shadcn/ui primitives
-    QRGenerator.tsx          # Main QR generator (client component)
-    BulkVCard.tsx            # Bulk vCard generator (client component)
-    McpDocs.tsx              # MCP docs (client component)
-    AddressSearch.tsx        # Address autocomplete (Photon/Komoot)
-    BlogGrid.tsx             # Post card grid with tag filtering
-    BlogTag.tsx              # Tag pill link
-    BlogToC.tsx              # Table of contents (sidebar + inline)
-    CodeBlock.tsx            # Code block with copy button
-    StructuredData.tsx       # JSON-LD schemas (WebApplication, FAQ)
-  content/blog/              # MDX blog posts
-  lib/
-    blog.ts                  # Blog content loading (gray-matter)
-    toc.ts                   # Table of contents extraction
-    qr-generator.ts          # QR generation logic (server-side)
-    utils.ts                 # cn() utility
-  qr-types.ts               # QR type definitions + encoders
-  vcard.ts                   # vCard encoding logic
-  seo.ts                     # Per-route SEO metadata
-  mcp/
-    tools.ts                 # Shared MCP tool definitions
-    stdio.ts                 # Stdio transport (local/Claude Code)
-    http.ts                  # HTTP transport handler
-  cli/index.ts               # CLI entry point
-scripts/
-  indexnow.ts                # Post-deploy search engine notification
+  app/                 Routes: home and [type] generators, vcard (and bulk), blog, docs/mcp, policies
+  app/mcp/route.ts     Remote MCP endpoint (Streamable HTTP); its server card is under .well-known/mcp
+  app/api/resolve-url/ Follows short links (Google Maps) server-side for the location type
+  components/          Page components; ui/ holds the shadcn primitives
+  content/blog/        MDX posts
+  lib/                 QR generation, blog loading and ToC, OG image helper, coordinate parsing, cn()
+  qr-types.ts          QR types and encoders; vcard.ts and skins.ts are shared with the CLI and MCP
+  seo.ts               Per-route SEO metadata
+  mcp/                 Tool definitions (tools.ts), HTTP and stdio transports
+  cli/index.ts         CLI entry point
+scripts/indexnow.ts    Post-deploy search engine notification
 ```
 
 ## Commands
 
 ```bash
 bun dev          # Next.js dev server (Turbopack) :3000
-bun build        # Next.js production build
+bun run build    # Next.js production build
 bun start        # Production server (next start)
 bun run cli      # CLI tool
-bun run mcp      # MCP server (stdio, for local/Claude Code)
-                   # Remote MCP: served at /mcp via Next.js route handler
-bun lint         # ESLint (next lint)
+bun run mcp      # MCP server over stdio; the remote one is served at /mcp
+bun run lint     # ESLint
 bun run indexnow # Submit URLs to search engines after deploy
 ```
 
@@ -89,12 +47,10 @@ No test framework. Don't create test files unless asked.
 
 ## Conventions
 
-- **Imports**: `@/` alias → `./src/`. Use `cn()` from `@/lib/utils` for class names
-- **Components**: Client components need `"use client"` directive. QR generator, bulk vCard, and interactive blog components are client-side
+- **Class names** go through `cn()` from `@/lib/utils`
+- **Client components**: the QR generator, bulk vCard, and interactive blog components
 - **Styling**: Tailwind v4 + CSS vars in `src/index.css`. Never hardcode colors — use theme vars
-- **SEO**: Next.js Metadata API per route. Blog posts auto-generate JSON-LD (BreadcrumbList, BlogPosting, FAQPage)
-- **Blog**: MDX files in `src/content/blog/`. Frontmatter parsed by gray-matter. Quick Answer + FAQ patterns auto-extract to schema
-- **CLI/MCP**: These files use `.ts` extensions in imports (Bun convention). They're excluded from tsconfig for Next.js build
+- **CLI/MCP**: `src/cli` and `src/mcp/stdio.ts` run under Bun, import with `.ts` extensions and are excluded from tsconfig. `src/mcp/tools.ts` and `http.ts` are part of the Next build
 
 ## Deployment
 
