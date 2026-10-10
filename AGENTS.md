@@ -2,20 +2,7 @@
 
 Multi-format QR code generator with web app, blog, CLI, and MCP server. Next.js 15 App Router deployed on Railway.
 
-## Commands
-
-```bash
-bun dev          # Next.js dev server (Turbopack) :3000
-bun build        # Next.js production build
-bun start        # Production server (next start)
-bun run cli      # CLI tool
-bun run mcp      # MCP server (stdio, for local/Claude Code)
-                   # Remote MCP: served at /mcp via Next.js route handler
-bun lint         # ESLint (next lint)
-bun run indexnow # Submit URLs to search engines after deploy
-```
-
-## Tech Stack
+## Stack
 
 | Layer      | Tech                                              |
 | ---------- | ------------------------------------------------- |
@@ -85,7 +72,22 @@ scripts/
   indexnow.ts                # Post-deploy search engine notification
 ```
 
-## Rules
+## Commands
+
+```bash
+bun dev          # Next.js dev server (Turbopack) :3000
+bun build        # Next.js production build
+bun start        # Production server (next start)
+bun run cli      # CLI tool
+bun run mcp      # MCP server (stdio, for local/Claude Code)
+                   # Remote MCP: served at /mcp via Next.js route handler
+bun lint         # ESLint (next lint)
+bun run indexnow # Submit URLs to search engines after deploy
+```
+
+No test framework. Don't create test files unless asked.
+
+## Conventions
 
 - **Imports**: `@/` alias → `./src/`. Use `cn()` from `@/lib/utils` for class names
 - **Components**: Client components need `"use client"` directive. QR generator, bulk vCard, and interactive blog components are client-side
@@ -97,11 +99,6 @@ scripts/
 ## Deployment
 
 Production deploys from main on Railway. Build and start commands live in railway.toml.
-Read domains, service ids and repo metadata from BTI OS with projects_fetch for BTI7.
-
-## No Tests
-
-No test framework. Don't create test files unless asked.
 
 <!-- >>> bti-os-project (managed by BTI OS — refresh with `bti sync`; edit app/public/onboarding/TEAM.md in the bti-os repo, not here) >>> -->
 <!-- bti-os-project: BTI7 · 315d591f0a29 · rendered 2026-10-03 -->
