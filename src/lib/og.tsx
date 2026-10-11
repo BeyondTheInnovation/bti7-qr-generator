@@ -2,8 +2,8 @@ import { type ReactElement } from 'react';
 
 const SO_AVATAR =
   'data:image/jpeg;base64,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';
-const GS_AVATAR =
-  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAADBUlEQVR4nNSZMWv6ThjHk8NAW9qhU2mXtpAsTae+gJZChpaOhUKXlk7J2pfUuYKgUUjOQR3cxRch6OAiIvHM/flzIOWnxid3Z+78znfn8zH3zTfPXYlSauyzkOoCRFWCDKpWq71ej2N1hNDZ2dlgMOCYe3d39/Lysn0cBejr64ujAsMwLMvq9/vn5+ccc33fh9QG2kKmaXJUwHRzc4Mx5mAA/ujOPYAQcl230+lcX1/vZP1dLLoq27ajKLq4uJC+cnFvIcdx4jjm80OGCn2Nuq6LMZb7HIrOAdd12+321dWVrAUVBJlt23Ecy3oOapLYcZwoiqT4QdmnxO3trRQ/qPwWYn4QzAfFH3Pi+aD+a1QwH9QDCOaDFgAiftAFgNsPGgHw+UEvAA4/gAAKbvyZHy4vL0GjIW1bs9k8ODjgKMWyLMj6a0UIgQwDAVBK6/U6B4MIAFBQgMVigTE+Pj7eVwDG0Gq1Tk5O9hWAUpqmKcb48PBwXwGY4H7QFIBSijGG7CV9AYB+0Bdg6YfsvVQAgCmYso1G4/X1dTabbQJIkmTT3CRJRqPR/0WsO0U8Ojo6PT3dXoHgH5CdD9lPIEmSj4+PTYUFQQApQBQg2w9btxAhxPd9xQAZfoB4gBCy9jkUCsC0mg9AE8/n8/f3d/UAq36Av4VW/aAAYOmHJUOu1yghJAgCxQD/+CFvDhBCPj8/FQMwMT9wBNnSD0AA0C0lh56ensIwfHt7yzuxVCr9/PxYlgUcL5rEGUrTtNvtjsfjyWTCMXc4HH5/f28fyrVBcihX//BXMq9ZReR53u/vL0c/rcs1q2EYz8/PYRjm7aeBKgIAIfT4+LgjhoJO5hBC9/f3lUqF73wpa2W5y2XINE3P88rlslyGos9GmR9ync1kq2gA5odarSbLDwpOpxFCDw8Psvyg7Hhdlh9U3g9I8YNKACl+UHxDI54P6q+YBPNBPQATtx90AeD2gy4Af/MhV/+gEQBT3v5BO4C8/cMOe2IRpWk6nU4hDJoCwKXjFsql/wIAAP///HWUDCRDqTIAAAAASUVORK5CYII=';
+const BTI_AVATAR =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAIAAAAlC+aJAAABrElEQVR4nOyYP0vzUBSH7/tS/wWbSF0E2zQZRKQtoVRBQT+AurhURPQLVPwAThUXwVGHDo4OUjo42dmhoCBFUSglS6i56NRCUmgEhzq433PB4XDxPPPDr30ggUNiw+GQqcx/7D/wWygAGwrAhgKwoQBsKACbmIwUBIHneWLHMAzbtm8fAY0xtrlkv/hhGH2JtWxSn9JGwDWpAM/zKpWK2HEcp1Qq7ZzVwbV+7eDyrvP8Foq1871sPm2Aa8o/QhSADQVgQwHYUAA2ygdInRK6rjuOI3Ysy2KMbSxaMoO5ZHxyDPhpY0Lqv/1T/cOWVGXD7R7V2mJndS5xur3QbDbBtUKhsF6+abTexVr9eGstMwuuKf8OUAA2FIANBWBDAdhQADZ/45i7b3+cXD+IneX5mfLuyuHVK7h2sZ+rVqucc7FWLBZN0wTXpAJ6/U/weNS1UcYY+MHwB86567piJ4oimSnl3wEKwIYCsKEAbCgAG+UDpI65bhi1/J7YScTHM+b0UycA1/Jpw/f9wWAg1lKplKZp4Jry16jyjxAFYEMB2FAANhSADQVg8x0AAP//bOluG4iaWeAAAAAASUVORK5CYII=';
 
 /** Site colors (from index.css .dark theme) */
 const C = {
@@ -182,7 +182,7 @@ export function OGLayout({ title, subtitle, type }: OGImageProps): ReactElement 
             marginBottom: 44,
           }}
         >
-          {/* Made by So from Gamified.studio */}
+          {/* Made by So from Beyond The Innovation */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
             <span style={{ color: C.muted, fontSize: 13, opacity: 0.7 }}>
               Made by
@@ -199,13 +199,13 @@ export function OGLayout({ title, subtitle, type }: OGImageProps): ReactElement 
               from
             </span>
             <img
-              src={GS_AVATAR}
+              src={BTI_AVATAR}
               width={18}
               height={18}
               alt=""
               style={{ borderRadius: '50%' }}
             />
-            <span style={{ color: C.fg, fontSize: 13 }}>Gamified.studio</span>
+            <span style={{ color: C.fg, fontSize: 13 }}>Beyond The Innovation</span>
           </div>
           <span style={{ color: C.muted, fontSize: 13, opacity: 0.5 }}>
             Free, no sign-up required

@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'Privacy policy for QR Gamified Studio. We do not collect, store, or transmit any personal data.',
+  description: 'Privacy policy for QR Code Generator. We do not collect, store, or transmit any personal data.',
 };
 
 export default function PrivacyPolicy() {
@@ -28,7 +28,7 @@ export default function PrivacyPolicy() {
           <section>
             <h2 className="text-xl font-semibold mb-3">Overview</h2>
             <p>
-              QR Gamified Studio ("we", "us", "our") operates the QR code generator at{' '}
+              Beyond The Innovation ("we", "us", "our") operates the QR code generator at{' '}
               <strong>qr.beyondtheinnovation.com</strong>, including the web application, CLI tool, and
               MCP (Model Context Protocol) server. We are committed to protecting your privacy.
             </p>
@@ -128,17 +128,17 @@ export default function PrivacyPolicy() {
             <p>
               If you have questions about this privacy policy or our practices, contact us at{' '}
               <a
-                href="mailto:so@gamified.studio"
+                href="mailto:so@beyondtheinnovation.com"
                 className="underline underline-offset-4 hover:text-[var(--foreground)]"
               >
-                so@gamified.studio
+                so@beyondtheinnovation.com
               </a>.
             </p>
           </section>
         </div>
 
         <div className="mt-12 pt-8 border-t border-[var(--border)] flex items-center justify-between text-sm text-[var(--muted-foreground)]">
-          <span>© {new Date().getFullYear()} Gamified Studio</span>
+          <span>© {new Date().getFullYear()} Beyond The Innovation</span>
           <Link href="/policies/tos" className="underline underline-offset-4 hover:text-[var(--foreground)]">
             Terms of Service
           </Link>

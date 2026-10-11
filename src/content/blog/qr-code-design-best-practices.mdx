@@ -21,7 +21,7 @@ QR scanners detect contrast between dark modules and a light background. Phone c
 
 So: dark foreground, light background. Always.
 
-The one asterisk here is intentional inversion (white dots on black). QR Gamified Studio has an "Inverted" skin if you want that look, but know that scan reliability takes a hit. You'd need to test on multiple devices before committing to print.
+The one asterisk here is intentional inversion (white dots on black). QR Code Generator has an "Inverted" skin if you want that look, but know that scan reliability takes a hit. You'd need to test on multiple devices before committing to print.
 
 For contrast ratio, aim for at least **3:1**. Ideally **4:1 or higher**. Good rule of thumb: if you'd struggle to read text at that contrast, a scanner will struggle too.
 
@@ -93,7 +93,7 @@ The Epic and Legendary tiers add gradient effects on the dots. It's a subtle tou
 
 Putting a logo in the center of a QR code is great for branding, but it's also where people most often break things.
 
-The logo physically covers data modules. Error correction compensates for the missing data so the code still scans. QR Gamified Studio bumps error correction from M to Q automatically when you add a logo, giving you 25% damage tolerance.
+The logo physically covers data modules. Error correction compensates for the missing data so the code still scans. QR Code Generator bumps error correction from M to Q automatically when you add a logo, giving you 25% damage tolerance.
 
 A few things to get right: keep the logo at **30-35%** of the QR code area (the default is 35%). Use a solid-background or transparent PNG, not a busy logo with thin lines that disappear at small sizes. Leave some margin around it (6px default) so dots don't bleed into the logo edges. And always scan-test on at least two phones before you print anything.
 
@@ -110,7 +110,7 @@ QR codes have four error correction levels. More correction means more resilienc
 | Q (Quartile) | ~25% | Codes with logos |
 | H (High) | ~30% | Outdoor use, stickers, anything that might get scratched |
 
-QR Gamified Studio defaults to M and auto-switches to Q when you add a logo. For outdoor signage or product stickers, bump it to H manually.
+QR Code Generator defaults to M and auto-switches to Q when you add a logo. For outdoor signage or product stickers, bump it to H manually.
 
 ---
 
@@ -128,7 +128,7 @@ Too small and it won't scan. No amount of design will fix a QR code that's 1cm w
 
 Quick math for billboards: divide the viewing distance by 10. If people are 20 meters away, your code needs to be at least 2 meters wide.
 
-For print, export as SVG. PNG is fine for screens but it'll pixelate when scaled up. Both formats are available in [QR Gamified Studio](https://qr.beyondtheinnovation.com). If you're printing [WiFi codes](/blog/wifi-qr-code-guide) for a lobby or guest room, SVG is especially worth it since those tend to live on walls for months.
+For print, export as SVG. PNG is fine for screens but it'll pixelate when scaled up. Both formats are available in [QR Code Generator](https://qr.beyondtheinnovation.com). If you're printing [WiFi codes](/blog/wifi-qr-code-guide) for a lobby or guest room, SVG is especially worth it since those tend to live on walls for months.
 
 ---
 
@@ -154,15 +154,15 @@ Dark on light. Black on white is the safest bet, but dark blue, dark green, and 
 
 ### Q: Can I make a QR code transparent?
 
-Yes, QR Gamified Studio supports transparent backgrounds. You can layer the code over any design. Just make sure whatever sits behind it provides enough contrast with the dots. Dark dots over a busy photograph won't scan.
+Yes, QR Code Generator supports transparent backgrounds. You can layer the code over any design. Just make sure whatever sits behind it provides enough contrast with the dots. Dark dots over a busy photograph won't scan.
 
 ### Q: Does adding a logo reduce scan reliability?
 
-It can if the logo is too big. Stay under 35% of the code area and use Q-level error correction (25% recovery). QR Gamified Studio does this automatically when you upload a logo.
+It can if the logo is too big. Stay under 35% of the code area and use Q-level error correction (25% recovery). QR Code Generator does this automatically when you upload a logo.
 
 ### Q: What's the difference between PNG and SVG export?
 
-PNG is raster, fixed pixels. SVG is vector, scales to any size without quality loss. Use PNG for screens, SVG for print. QR Gamified Studio exports both.
+PNG is raster, fixed pixels. SVG is vector, scales to any size without quality loss. Use PNG for screens, SVG for print. QR Code Generator exports both.
 
 ### Q: Which skin should I use for professional contexts?
 

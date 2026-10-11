@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 const serverCard = {
   $schema:
     'https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json',
-  name: 'io.gamified.studio/qr-generator',
+  name: 'com.beyondtheinnovation/qr-generator',
   version: '1.0.0',
   title: 'QR Code Generator',
   description:

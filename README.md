@@ -1,6 +1,6 @@
 # QR Code Generator
 
-Multi-format QR code generator with a web app, blog, CLI tool, and MCP server. Built with Next.js 15 and React 19.
+Multi-format QR code generator with a web app, blog, CLI tool, and MCP server. Built with Next.js 16 and React 19.
 
 **Live at [qr.beyondtheinnovation.com](https://qr.beyondtheinnovation.com)**
 
@@ -20,7 +20,7 @@ Multi-format QR code generator with a web app, blog, CLI tool, and MCP server. B
 
 | Layer      | Tech                                              |
 | ---------- | ------------------------------------------------- |
-| Framework  | Next.js 15, React 19, App Router                  |
+| Framework  | Next.js 16, React 19, App Router                  |
 | Language   | TypeScript (strict mode)                           |
 | Styling    | Tailwind v4, CSS variables (oklch), shadcn/ui      |
 | QR         | qr-code-styling (web), qrcode (CLI/MCP)           |
@@ -50,10 +50,10 @@ Starts the Next.js dev server with Turbopack at `http://localhost:3000`.
 ### Build
 
 ```bash
-bun build
+bun run build
 ```
 
-Produces a standalone Next.js build in `.next/standalone/`.
+Runs `next build` and writes the production build to `.next/`.
 
 ### Production
 
@@ -61,7 +61,15 @@ Produces a standalone Next.js build in `.next/standalone/`.
 bun start
 ```
 
-Runs the standalone Node.js server (`node .next/standalone/server.js`).
+Runs `next start` against that build. Railway builds and starts the same way; the commands are in `railway.toml`.
+
+### Test
+
+```bash
+bun test
+```
+
+Runs the unit tests (`*.test.ts`) with Bun's built-in test runner.
 
 ## CLI
 

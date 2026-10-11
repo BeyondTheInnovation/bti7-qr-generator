@@ -29,8 +29,8 @@ export function WebApplicationSchema() {
     ],
     creator: {
       '@type': 'Organization',
-      name: 'Gamified Studio',
-      url: 'https://gamified.studio',
+      name: 'Beyond The Innovation',
+      url: 'https://beyondtheinnovation.com',
     },
   };
 

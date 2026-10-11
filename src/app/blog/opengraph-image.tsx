@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "QR Gamified Studio Blog";
+export const alt = "QR Code Generator Blog";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -80,7 +80,7 @@ export default function Image() {
                 opacity: 0.7,
               }}
             >
-              QR Gamified Studio
+              QR Code Generator
             </span>
             <span style={{ color: "#555555", fontSize: 18 }}>·</span>
             <span

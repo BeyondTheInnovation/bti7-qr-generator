@@ -17,7 +17,7 @@ import type { Metadata } from "next";
 const BASE_URL = "https://qr.beyondtheinnovation.com";
 const AUTHOR_NAME = "So";
 const AUTHOR_URL = "https://github.com/Sokanon";
-const SITE_NAME = "QR Gamified Studio";
+const SITE_NAME = "QR Code Generator";
 
 // ─── Static generation ──────────────────────────────────────────────────────
 

@@ -16,16 +16,16 @@ export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
     default: 'Free QR Code Generator — URLs, vCards, WiFi, Events & More',
-    template: '%s | QR Gamified Studio',
+    template: '%s | QR Code Generator',
   },
   description:
     'Generate custom QR codes for free. Create QR codes for URLs, vCards, WiFi passwords, emails, phone numbers, SMS, calendar events, and more.',
   keywords:
     'QR code generator, free QR code, vCard QR code, WiFi QR code, QR code maker, create QR code online, custom QR code',
-  authors: [{ name: 'Gamified Studio', url: 'https://gamified.studio' }],
+  authors: [{ name: 'Beyond The Innovation', url: 'https://beyondtheinnovation.com' }],
   openGraph: {
     type: 'website',
-    siteName: 'QR Code Generator by Gamified Studio',
+    siteName: 'QR Code Generator by Beyond The Innovation',
     locale: 'en_US',
   },
   twitter: {

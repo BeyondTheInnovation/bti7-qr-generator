@@ -244,12 +244,12 @@ export default function McpDocs() {
             <div>
               <h3 className="font-medium mb-2">1. URL QR code</h3>
               <p className="text-sm text-[var(--muted-foreground)] mb-3">
-                "Create a QR code for my website https://gamified.studio"
+                "Create a QR code for my website https://beyondtheinnovation.com"
               </p>
               <CopyBlock code={`{
   "name": "generate_url_qr",
   "arguments": {
-    "url": "https://gamified.studio"
+    "url": "https://beyondtheinnovation.com"
   }
 }`} />
               <p className="text-sm text-[var(--muted-foreground)] mt-2">
@@ -290,14 +290,14 @@ export default function McpDocs() {
             <div>
               <h3 className="font-medium mb-2">3. Custom-styled QR code</h3>
               <p className="text-sm text-[var(--muted-foreground)] mb-3">
-                "Make a navy-blue QR code for Gamified Studio with the website and contact email."
+                "Make a navy-blue QR code for Beyond The Innovation with the website and contact email."
               </p>
               <CopyBlock code={`{
   "name": "generate_vcard_qr",
   "arguments": {
-    "org": "Gamified Studio",
-    "url": "https://gamified.studio",
-    "emails": [{ "type": "WORK", "value": "so@gamified.studio" }],
+    "org": "Beyond The Innovation",
+    "url": "https://beyondtheinnovation.com",
+    "emails": [{ "type": "WORK", "value": "so@beyondtheinnovation.com" }],
     "width": 600,
     "darkColor": "#1e3a5f",
     "lightColor": "#ffffff"
@@ -311,12 +311,12 @@ export default function McpDocs() {
             <div>
               <h3 className="font-medium mb-2">4. WiFi QR code</h3>
               <p className="text-sm text-[var(--muted-foreground)] mb-3">
-                "Generate a WiFi QR for my office network 'GamifiedHQ' with WPA password 'welcome2025'"
+                "Generate a WiFi QR for my office network 'BTIHQ' with WPA password 'welcome2025'"
               </p>
               <CopyBlock code={`{
   "name": "generate_wifi_qr",
   "arguments": {
-    "ssid": "GamifiedHQ",
+    "ssid": "BTIHQ",
     "password": "welcome2025",
     "encryption": "WPA"
   }
@@ -347,14 +347,14 @@ export default function McpDocs() {
           <h2 className="text-xl font-semibold mb-3">Support</h2>
           <p className="text-sm">
             For questions, issues, or feedback, contact{' '}
-            <a href="mailto:so@gamified.studio" className="underline underline-offset-4 hover:text-[var(--foreground)]">
-              so@gamified.studio
+            <a href="mailto:so@beyondtheinnovation.com" className="underline underline-offset-4 hover:text-[var(--foreground)]">
+              so@beyondtheinnovation.com
             </a>.
           </p>
         </section>
 
         <div className="mt-12 pt-8 border-t border-[var(--border)] flex items-center justify-between text-sm text-[var(--muted-foreground)]">
-          <span>&copy; {new Date().getFullYear()} Gamified Studio</span>
+          <span>&copy; {new Date().getFullYear()} Beyond The Innovation</span>
           <div className="flex gap-4">
             <Link href="/policies/privacy" className="underline underline-offset-4 hover:text-[var(--foreground)]">
               Privacy Policy

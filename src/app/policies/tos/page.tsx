@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
-  description: 'Terms of service for QR Gamified Studio. Free QR code generator with no accounts or data collection.',
+  description: 'Terms of service for QR Code Generator. Free QR code generator with no accounts or data collection.',
 };
 
 export default function TermsOfService() {
@@ -28,7 +28,7 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-xl font-semibold mb-3">Overview</h2>
             <p>
-              QR Gamified Studio ("we", "us", "our") operates the QR code generator at{' '}
+              Beyond The Innovation ("we", "us", "our") operates the QR code generator at{' '}
               <strong>qr.beyondtheinnovation.com</strong>, including the web application, CLI tool, and
               MCP (Model Context Protocol) server. These Terms of Service ("Terms") govern your
               use of the service.
@@ -46,7 +46,7 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-xl font-semibold mb-3">Service Description</h2>
             <p className="mb-3">
-              QR Gamified Studio is a <strong>free QR code generator</strong> available through
+              The service is a <strong>free QR code generator</strong> available through
               multiple interfaces:
             </p>
             <ul className="list-disc pl-6 space-y-2">
@@ -100,7 +100,7 @@ export default function TermsOfService() {
             </p>
             <p>
               The service itself, including its source code, branding, design, and
-              documentation, is owned by Gamified Studio. You may not copy, modify, or
+              documentation, is owned by Beyond The Innovation. You may not copy, modify, or
               distribute the service or its branding without our prior written consent.
             </p>
           </section>
@@ -119,7 +119,7 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-xl font-semibold mb-3">Limitation of Liability</h2>
             <p>
-              To the fullest extent permitted by law, Gamified Studio shall not be liable for
+              To the fullest extent permitted by law, Beyond The Innovation shall not be liable for
               any indirect, incidental, special, consequential, or punitive damages, or any
               loss of profits or data, arising out of or in connection with your use of the
               service or any QR codes generated through it, regardless of the cause of action
@@ -168,17 +168,17 @@ export default function TermsOfService() {
             <p>
               If you have questions about these Terms of Service, contact us at{' '}
               <a
-                href="mailto:so@gamified.studio"
+                href="mailto:so@beyondtheinnovation.com"
                 className="underline underline-offset-4 hover:text-[var(--foreground)]"
               >
-                so@gamified.studio
+                so@beyondtheinnovation.com
               </a>.
             </p>
           </section>
         </div>
 
         <div className="mt-12 pt-8 border-t border-[var(--border)] text-sm text-[var(--muted-foreground)]">
-          © {new Date().getFullYear()} Gamified Studio. All rights reserved.
+          © {new Date().getFullYear()} Beyond The Innovation. All rights reserved.
           {' · '}
           <Link
             href="/policies/privacy"

@@ -40,10 +40,9 @@ bun start        # Production server (next start)
 bun run cli      # CLI tool
 bun run mcp      # MCP server over stdio; the remote one is served at /mcp
 bun run lint     # ESLint
+bun test         # Unit tests (bun:test), *.test.ts beside the module
 bun run indexnow # Submit URLs to search engines after deploy
 ```
-
-No test framework. Don't create test files unless asked.
 
 ## Conventions
 
@@ -51,6 +50,7 @@ No test framework. Don't create test files unless asked.
 - **Client components**: the QR generator, bulk vCard, and interactive blog components
 - **Styling**: Tailwind v4 + CSS vars in `src/index.css`. Never hardcode colors — use theme vars
 - **CLI/MCP**: `src/cli` and `src/mcp/stdio.ts` run under Bun, import with `.ts` extensions and are excluded from tsconfig. `src/mcp/tools.ts` and `http.ts` are part of the Next build
+- **Tests**: `*.test.ts` files import from `bun:test` and are excluded from tsconfig, so the Next build never type-checks them
 
 ## Deployment
 

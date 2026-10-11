@@ -9,14 +9,13 @@ paths:
 
 # Blog Content Guidelines
 
-Instructions for creating blog posts on QR Gamified Studio. Every post is a single MDX file — no CMS, no database.
+Instructions for creating blog posts on QR Code Generator. Every post is a single MDX file — no CMS, no database.
 
 ## Site Info
 
 | Key | Value |
 |-----|-------|
-| Site name | QR Gamified Studio |
-| Short name | QR Gamified |
+| Site name | QR Code Generator |
 | Base URL | `https://qr.beyondtheinnovation.com` |
 | Blog URL | `https://qr.beyondtheinnovation.com/blog` |
 | Domain | `qr.beyondtheinnovation.com` |
@@ -42,7 +41,7 @@ readTime: 7
 
 | Field         | Type           | Required | Notes                                                              |
 | ------------- | -------------- | -------- | ------------------------------------------------------------------ |
-| `title`       | string         | Yes      | Under 45 chars. Layout appends ` \| QR Gamified` (+15 chars). Rendered `<title>` must stay under 60. |
+| `title`       | string         | Yes      | Under 40 chars. Layout appends ` \| QR Code Generator` (+20 chars). Rendered `<title>` must stay under 60. |
 | `description` | string         | Yes      | 150-160 chars. Used in meta tags, OG images, TLDR sidebar. Start with an action word. |
 | `date`        | `"YYYY-MM-DD"` | Yes      | Publish date. Posts sort newest-first.                             |
 | `updatedDate` | `"YYYY-MM-DD"` | No       | Set when content is materially updated.                            |
@@ -53,12 +52,12 @@ readTime: 7
 
 ### Title Rules
 
-The blog layout template is `%s | QR Gamified`. This adds 15 characters to every title. To keep the rendered `<title>` tag under 60 characters (Google's display limit):
+The blog layout template is `%s | QR Code Generator`. This adds 20 characters to every title. To keep the rendered `<title>` tag under 60 characters (Google's display limit):
 
-- **Max frontmatter title: ~45 characters**
+- **Max frontmatter title: ~40 characters**
 - Put the primary keyword near the front
 - Use sentence case for the body, but proper nouns/acronyms are fine
-- Good: "How to Create a QR Code for Your Business Card" (46 chars)
+- Good: "QR Code Design: Colors, Logos, and Tips" (39 chars)
 - Bad: "The Ultimate Complete Guide to QR Code Types: URLs, vCards, WiFi, and Beyond" (too long)
 
 ### Description Rules

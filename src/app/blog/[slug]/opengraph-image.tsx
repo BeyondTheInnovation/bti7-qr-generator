@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { getAllPosts, getPost } from "@/lib/blog";
 
-export const alt = "QR Gamified Studio — Blog";
+export const alt = "QR Code Generator — Blog";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -13,7 +13,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   const { slug } = await params;
   const post = getPost(slug);
 
-  const title = post?.title ?? "QR Gamified Studio Insights";
+  const title = post?.title ?? "QR Code Generator Insights";
   const tags = post?.tags ?? [];
   const accent = "#e5e5e5";
 
@@ -110,7 +110,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
                 opacity: 0.6,
               }}
             >
-              QR Gamified Studio
+              QR Code Generator
             </span>
             <span style={{ color: "#555555", fontSize: 17, fontWeight: 700 }}>·</span>
             <span
