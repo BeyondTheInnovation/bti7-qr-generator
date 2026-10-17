@@ -54,7 +54,7 @@ bun run indexnow # Submit URLs to search engines after deploy
 
 ## Deployment
 
-Production deploys from main on Railway. Build and start commands live in `.railway/railway.ts`; after changing it, run `railway config plan` and then `railway config apply`.
+Production deploys from main on Railway, built from the root `Dockerfile`. `DEPLOYMENT.md` has the image, environment and service settings.
 
 <!-- >>> bti-os-project (managed by BTI OS — refresh with `bti sync`; edit app/public/onboarding/TEAM.md in the bti-os repo, not here) >>> -->
 <!-- bti-os-project: BTI7 · 315d591f0a29 · rendered 2026-10-03 -->

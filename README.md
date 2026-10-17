@@ -61,7 +61,7 @@ Runs `next build` and writes the production build to `.next/`.
 bun start
 ```
 
-Runs `next start` against that build. Railway builds and starts the same way; the commands are in `.railway/railway.ts`.
+Runs `next start` against that build. Production runs the image built from the root `Dockerfile`; see `DEPLOYMENT.md`.
 
 ### Test
 
