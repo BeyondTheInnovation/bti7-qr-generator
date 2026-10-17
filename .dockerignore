@@ -1,0 +1,13 @@
+.git
+.github
+.claude
+.next
+node_modules
+coverage
+.env*
+*.tsbuildinfo
+next-env.d.ts
+Dockerfile
+.dockerignore
+*.log
+.DS_Store

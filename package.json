@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "QR code generator — web app, CLI, MCP server, and blog",
   "type": "module",
+  "packageManager": "bun@1.4.2",
   "bin": {
     "vcard-qr": "./src/cli/index.ts"
   },
