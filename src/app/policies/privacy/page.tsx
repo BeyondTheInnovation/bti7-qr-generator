@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   description: 'Privacy policy for QR Code Generator. We do not collect, store, or transmit any personal data.',
 };
 
+const currentYear = new Date().getFullYear();
+
 export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
@@ -28,7 +30,7 @@ export default function PrivacyPolicy() {
           <section>
             <h2 className="text-xl font-semibold mb-3">Overview</h2>
             <p>
-              Beyond The Innovation ("we", "us", "our") operates the QR code generator at{' '}
+              Beyond The Innovation (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) operates the QR code generator at{' '}
               <strong>qr.beyondtheinnovation.com</strong>, including the web application, CLI tool, and
               MCP (Model Context Protocol) server. We are committed to protecting your privacy.
             </p>
@@ -100,7 +102,7 @@ export default function PrivacyPolicy() {
               The web app uses <strong>Komoot Photon</strong> for address autocomplete
               suggestions. When you type in the address field, search queries are sent to{' '}
               <code className="rounded bg-[var(--muted)] px-1.5 py-0.5 text-sm">photon.komoot.io</code>.
-              This is the only external network request made by the app. Komoot's API does not
+              This is the only external network request made by the app. Komoot&apos;s API does not
               require authentication and their usage is subject to their own terms.
             </p>
           </section>
@@ -138,7 +140,7 @@ export default function PrivacyPolicy() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-[var(--border)] flex items-center justify-between text-sm text-[var(--muted-foreground)]">
-          <span>© {new Date().getFullYear()} Beyond The Innovation</span>
+          <span>© {currentYear} Beyond The Innovation</span>
           <Link href="/policies/tos" className="underline underline-offset-4 hover:text-[var(--foreground)]">
             Terms of Service
           </Link>

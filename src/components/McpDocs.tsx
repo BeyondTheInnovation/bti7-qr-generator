@@ -37,6 +37,8 @@ function ToolCard({ name, description, params }: { name: string; description: st
   );
 }
 
+const currentYear = new Date().getFullYear();
+
 export default function McpDocs() {
   return (
     <div className="flex-1 overflow-y-auto">
@@ -244,7 +246,7 @@ export default function McpDocs() {
             <div>
               <h3 className="font-medium mb-2">1. URL QR code</h3>
               <p className="text-sm text-[var(--muted-foreground)] mb-3">
-                "Create a QR code for my website https://beyondtheinnovation.com"
+                &quot;Create a QR code for my website https://beyondtheinnovation.com&quot;
               </p>
               <CopyBlock code={`{
   "name": "generate_url_qr",
@@ -260,7 +262,7 @@ export default function McpDocs() {
             <div>
               <h3 className="font-medium mb-2">2. vCard text for file export</h3>
               <p className="text-sm text-[var(--muted-foreground)] mb-3">
-                "Generate a vCard for Dr. Sarah Lee, CMO at HealthCorp, with her office address."
+                &quot;Generate a vCard for Dr. Sarah Lee, CMO at HealthCorp, with her office address.&quot;
               </p>
               <CopyBlock code={`{
   "name": "generate_vcard_text",
@@ -290,7 +292,7 @@ export default function McpDocs() {
             <div>
               <h3 className="font-medium mb-2">3. Custom-styled QR code</h3>
               <p className="text-sm text-[var(--muted-foreground)] mb-3">
-                "Make a navy-blue QR code for Beyond The Innovation with the website and contact email."
+                &quot;Make a navy-blue QR code for Beyond The Innovation with the website and contact email.&quot;
               </p>
               <CopyBlock code={`{
   "name": "generate_vcard_qr",
@@ -311,7 +313,7 @@ export default function McpDocs() {
             <div>
               <h3 className="font-medium mb-2">4. WiFi QR code</h3>
               <p className="text-sm text-[var(--muted-foreground)] mb-3">
-                "Generate a WiFi QR for my office network 'BTIHQ' with WPA password 'welcome2025'"
+                &quot;Generate a WiFi QR for my office network &apos;BTIHQ&apos; with WPA password &apos;welcome2025&apos;&quot;
               </p>
               <CopyBlock code={`{
   "name": "generate_wifi_qr",
@@ -354,7 +356,7 @@ export default function McpDocs() {
         </section>
 
         <div className="mt-12 pt-8 border-t border-[var(--border)] flex items-center justify-between text-sm text-[var(--muted-foreground)]">
-          <span>&copy; {new Date().getFullYear()} Beyond The Innovation</span>
+          <span>&copy; {currentYear} Beyond The Innovation</span>
           <div className="flex gap-4">
             <Link href="/policies/privacy" className="underline underline-offset-4 hover:text-[var(--foreground)]">
               Privacy Policy

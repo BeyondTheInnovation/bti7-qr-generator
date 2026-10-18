@@ -39,7 +39,9 @@ bun run build    # Next.js production build
 bun start        # Production server (next start)
 bun run cli      # CLI tool
 bun run mcp      # MCP server over stdio; the remote one is served at /mcp
-bun run lint     # ESLint
+bun run lint     # oxlint
+bun run format   # oxfmt, rewrites in place
+bun run check    # oxlint and the oxfmt check, as CI runs them
 bun run check-types # next typegen, then tsc
 bun test         # Unit tests (bun:test), *.test.ts beside the module
 bun run indexnow # Submit URLs to search engines after deploy

@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   description: 'Terms of service for QR Code Generator. Free QR code generator with no accounts or data collection.',
 };
 
+const currentYear = new Date().getFullYear();
+
 export default function TermsOfService() {
   return (
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
@@ -28,9 +30,9 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-xl font-semibold mb-3">Overview</h2>
             <p>
-              Beyond The Innovation ("we", "us", "our") operates the QR code generator at{' '}
+              Beyond The Innovation (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;) operates the QR code generator at{' '}
               <strong>qr.beyondtheinnovation.com</strong>, including the web application, CLI tool, and
-              MCP (Model Context Protocol) server. These Terms of Service ("Terms") govern your
+              MCP (Model Context Protocol) server. These Terms of Service (&quot;Terms&quot;) govern your
               use of the service.
             </p>
           </section>
@@ -86,7 +88,7 @@ export default function TermsOfService() {
                 service beyond what is permitted by applicable law.
               </li>
               <li>
-                Attempt to <strong>disrupt, overload, or interfere</strong> with the service's
+                Attempt to <strong>disrupt, overload, or interfere</strong> with the service&apos;s
                 infrastructure or availability for other users.
               </li>
             </ul>
@@ -108,8 +110,8 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-xl font-semibold mb-3">No Warranty</h2>
             <p>
-              The service is provided <strong>"as is"</strong> and{' '}
-              <strong>"as available"</strong> without warranties of any kind, whether express or
+              The service is provided <strong>&quot;as is&quot;</strong> and{' '}
+              <strong>&quot;as available&quot;</strong> without warranties of any kind, whether express or
               implied, including but not limited to implied warranties of merchantability,
               fitness for a particular purpose, and non-infringement. We do not guarantee that
               the service will be uninterrupted, error-free, or available at all times.
@@ -178,7 +180,7 @@ export default function TermsOfService() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-[var(--border)] text-sm text-[var(--muted-foreground)]">
-          © {new Date().getFullYear()} Beyond The Innovation. All rights reserved.
+          © {currentYear} Beyond The Innovation. All rights reserved.
           {' · '}
           <Link
             href="/policies/privacy"

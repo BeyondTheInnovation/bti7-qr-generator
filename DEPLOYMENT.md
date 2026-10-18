@@ -44,8 +44,8 @@ BTI OS: `bti call projects.fetch id=BTI7 include_metadata=true`.
 
 ## Gate
 
-`.github/workflows/verify.yml` runs the frozen-lockfile install, lint, the
-typecheck, the tests, the build and the image build on every push to and pull
+`.github/workflows/verify.yml` runs the frozen-lockfile install, the lint and
+format check, the typecheck, the tests, the build and the image build on every push to and pull
 request into `main`. Railway deploys on push in parallel with it, so a red check
 holds a deploy back only while the trigger's Wait for CI is on; check that in
 Railway rather than assuming.

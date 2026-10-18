@@ -421,13 +421,14 @@ export default function BulkVCard() {
   const qrRef = useRef<HTMLDivElement>(null);
   const qrCode = useRef<QRCodeStyling | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [showAllContacts, setShowAllContacts] = useState(false);
+  const [expandedAtCount, setExpandedAtCount] = useState<number | null>(null);
   const [dragging, setDragging] = useState(false);
 
   const { contacts, errors } = useMemo(
     () => mode === 'csv' ? parseCSVContacts(input) : parseJSONContacts(input),
     [input, mode],
   );
+  const showAllContacts = expandedAtCount === contacts.length;
 
   // Preview first contact
   const firstEncoded = useMemo(() => {
@@ -592,8 +593,6 @@ export default function BulkVCard() {
 
   const aiPrompt = mode === 'csv' ? CSV_AI_PROMPT : JSON_AI_PROMPT;
   const example = mode === 'csv' ? CSV_EXAMPLE : JSON_EXAMPLE;
-
-  useEffect(() => setShowAllContacts(false), [contacts.length]);
 
   const visibleContacts = contacts.length > VISIBLE_CONTACTS && !showAllContacts
     ? contacts.slice(0, VISIBLE_CONTACTS)
@@ -779,7 +778,7 @@ export default function BulkVCard() {
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => setShowAllContacts(!showAllContacts)}
+                      onClick={() => setExpandedAtCount(showAllContacts ? null : contacts.length)}
                       className="w-full text-xs text-muted-foreground"
                     >
                       {showAllContacts
