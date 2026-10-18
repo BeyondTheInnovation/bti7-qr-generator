@@ -7,6 +7,11 @@ updates:
     open-pull-requests-limit: 2
     cooldown:
       default-days: 3
+    # Node's types follow the Node line the image runs, which moves by hand.
+    ignore:
+      - dependency-name: "@types/node"
+        update-types:
+          - version-update:semver-major
     groups:
       minor-and-patch:
         update-types:
