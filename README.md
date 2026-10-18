@@ -18,14 +18,14 @@ Multi-format QR code generator with a web app, blog, CLI tool, and MCP server. B
 
 ## Tech Stack
 
-| Layer      | Tech                                              |
-| ---------- | ------------------------------------------------- |
-| Framework  | Next.js 16, React 19, App Router                  |
-| Language   | TypeScript (strict mode)                           |
-| Styling    | Tailwind v4, CSS variables (oklch), shadcn/ui      |
-| QR         | qr-code-styling (web), qrcode (CLI/MCP)           |
-| Blog       | MDX (next-mdx-remote/rsc), rehype-pretty-code      |
-| MCP        | @modelcontextprotocol/sdk                          |
+| Layer     | Tech                                          |
+| --------- | --------------------------------------------- |
+| Framework | Next.js 16, React 19, App Router              |
+| Language  | TypeScript (strict mode)                      |
+| Styling   | Tailwind v4, CSS variables (oklch), shadcn/ui |
+| QR        | qr-code-styling (web), qrcode (CLI/MCP)       |
+| Blog      | MDX (next-mdx-remote/rsc), rehype-pretty-code |
+| MCP       | @modelcontextprotocol/sdk                     |
 
 ## Getting Started
 
@@ -87,19 +87,19 @@ bun run cli --first-name John --last-name Doe \
 
 Key options:
 
-| Flag | Description |
-| ---- | ----------- |
-| `-f, --first-name` | First name |
-| `-l, --last-name` | Last name |
-| `--org` | Organization |
-| `--title` | Job title |
-| `--phone` | Phone as `TYPE:number` (repeatable) |
-| `--email` | Email as `TYPE:address` (repeatable) |
-| `--address` | Semicolon-delimited or JSON (repeatable) |
-| `--url` | Website URL |
-| `-o, --output` | Output file path (default: `<name>_qr.png`) |
-| `--vcard-only` | Output raw vCard text instead of QR image |
-| `-h, --help` | Show full help |
+| Flag               | Description                                 |
+| ------------------ | ------------------------------------------- |
+| `-f, --first-name` | First name                                  |
+| `-l, --last-name`  | Last name                                   |
+| `--org`            | Organization                                |
+| `--title`          | Job title                                   |
+| `--phone`          | Phone as `TYPE:number` (repeatable)         |
+| `--email`          | Email as `TYPE:address` (repeatable)        |
+| `--address`        | Semicolon-delimited or JSON (repeatable)    |
+| `--url`            | Website URL                                 |
+| `-o, --output`     | Output file path (default: `<name>_qr.png`) |
+| `--vcard-only`     | Output raw vCard text instead of QR image   |
+| `-h, --help`       | Show full help                              |
 
 ## MCP Server
 
@@ -113,11 +113,11 @@ The MCP server is also available over HTTP at `/mcp` on the production site.
 
 ### Tools
 
-| Tool | Description |
-| ---- | ----------- |
-| `generate_vcard_qr` | Generate a vCard QR code, returns base64 PNG |
-| `generate_vcard_qr_file` | Generate a vCard QR code and save to a file |
-| `generate_vcard_text` | Generate raw vCard text (for .vcf files) |
+| Tool                     | Description                                  |
+| ------------------------ | -------------------------------------------- |
+| `generate_vcard_qr`      | Generate a vCard QR code, returns base64 PNG |
+| `generate_vcard_qr_file` | Generate a vCard QR code and save to a file  |
+| `generate_vcard_text`    | Generate raw vCard text (for .vcf files)     |
 
 ### Claude Desktop Configuration
 

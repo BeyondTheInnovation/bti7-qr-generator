@@ -13,12 +13,12 @@ Instructions for creating blog posts on QR Code Generator. Every post is a singl
 
 ## Site Info
 
-| Key | Value |
-|-----|-------|
-| Site name | QR Code Generator |
-| Base URL | `https://qr.beyondtheinnovation.com` |
-| Blog URL | `https://qr.beyondtheinnovation.com/blog` |
-| Domain | `qr.beyondtheinnovation.com` |
+| Key       | Value                                     |
+| --------- | ----------------------------------------- |
+| Site name | QR Code Generator                         |
+| Base URL  | `https://qr.beyondtheinnovation.com`      |
+| Blog URL  | `https://qr.beyondtheinnovation.com/blog` |
+| Domain    | `qr.beyondtheinnovation.com`              |
 
 ## File Location
 
@@ -39,16 +39,16 @@ readTime: 7
 ---
 ```
 
-| Field         | Type           | Required | Notes                                                              |
-| ------------- | -------------- | -------- | ------------------------------------------------------------------ |
+| Field         | Type           | Required | Notes                                                                                                      |
+| ------------- | -------------- | -------- | ---------------------------------------------------------------------------------------------------------- |
 | `title`       | string         | Yes      | Under 40 chars. Layout appends ` \| QR Code Generator` (+20 chars). Rendered `<title>` must stay under 60. |
-| `description` | string         | Yes      | 150-160 chars. Used in meta tags, OG images, TLDR sidebar. Start with an action word. |
-| `date`        | `"YYYY-MM-DD"` | Yes      | Publish date. Posts sort newest-first.                             |
-| `updatedDate` | `"YYYY-MM-DD"` | No       | Set when content is materially updated.                            |
-| `author`      | string         | Yes      | Default: `"So"`. See Author Attribution below.                    |
-| `slug`        | string         | No       | Only needed if slug differs from filename. Normally omit — slug is derived from filename. |
-| `tags`        | string[]       | Yes      | 2-4 tags. Title Case. See Tag Rules below.                        |
-| `readTime`    | number         | Yes      | Estimated minutes. Calculate as `words / 200`, rounded.           |
+| `description` | string         | Yes      | 150-160 chars. Used in meta tags, OG images, TLDR sidebar. Start with an action word.                      |
+| `date`        | `"YYYY-MM-DD"` | Yes      | Publish date. Posts sort newest-first.                                                                     |
+| `updatedDate` | `"YYYY-MM-DD"` | No       | Set when content is materially updated.                                                                    |
+| `author`      | string         | Yes      | Default: `"So"`. See Author Attribution below.                                                             |
+| `slug`        | string         | No       | Only needed if slug differs from filename. Normally omit — slug is derived from filename.                  |
+| `tags`        | string[]       | Yes      | 2-4 tags. Title Case. See Tag Rules below.                                                                 |
+| `readTime`    | number         | Yes      | Estimated minutes. Calculate as `words / 200`, rounded.                                                    |
 
 ### Title Rules
 
@@ -91,6 +91,7 @@ Scan `src/content/blog/*.mdx` frontmatter for the current tag list before creati
 ### Quick Answer Pattern (required)
 
 Every `## h2` section should start with a `**Quick answer:**` line. This pattern is extracted by the page template for:
+
 - **FAQPage JSON-LD schema** (SEO structured data)
 - **TLDR sidebar** (Key Points panel on desktop)
 
@@ -106,11 +107,11 @@ The regex that extracts these: `/^##\s+(.+)\n+\*\*Quick answer:\*\*\s+(.+)/gm`
 
 On xl+ screens, blog posts show a right sidebar panel with four sections. All are auto-populated from frontmatter and content — no manual setup needed.
 
-| Section | Source | Notes |
-|---------|--------|-------|
-| **TLDR** | `description` from frontmatter | Shown as-is. Write descriptions that work as standalone summaries. |
-| **Tags** | `tags` from frontmatter | Rendered as bordered badges linking to `/blog?tag=X`. |
-| **Latest** | 5 most recent posts (excluding current) | Auto-generated. No action needed. |
+| Section    | Source                                  | Notes                                                              |
+| ---------- | --------------------------------------- | ------------------------------------------------------------------ |
+| **TLDR**   | `description` from frontmatter          | Shown as-is. Write descriptions that work as standalone summaries. |
+| **Tags**   | `tags` from frontmatter                 | Rendered as bordered badges linking to `/blog?tag=X`.              |
+| **Latest** | 5 most recent posts (excluding current) | Auto-generated. No action needed.                                  |
 
 ### FAQ Section (required)
 
@@ -141,26 +142,27 @@ The regex that extracts these: `/###\s+Q:\s+(.+)\n+([\s\S]+?)(?=\n###|\n##|$)/g`
 ### Internal Linking (required)
 
 Every post must include:
+
 - **2-4 links to other blog posts** in the body text (not just the auto-generated Related Articles widget)
 - **1-2 links to tool pages** (`/vcard`, `/wifi`, `/vcard/bulk`, `/docs/mcp`, etc.)
 - **Descriptive anchor text** — "the [design best practices guide](/blog/qr-code-design-best-practices)" not "click here"
 
 ### SEO Keyword Placement
 
-| Location | What to include |
-|----------|----------------|
-| Title (frontmatter) | Primary keyword near front, under 45 chars |
-| Description | Primary keyword + value prop, 150-160 chars |
-| First 100 words | Primary keyword naturally |
-| At least one H2 | Primary keyword or close variant |
-| Quick answers | Direct, keyword-rich answers (1-2 sentences) |
-| FAQ questions | Long-tail question keywords |
-| Body | Secondary keywords woven naturally, no stuffing |
+| Location            | What to include                                 |
+| ------------------- | ----------------------------------------------- |
+| Title (frontmatter) | Primary keyword near front, under 45 chars      |
+| Description         | Primary keyword + value prop, 150-160 chars     |
+| First 100 words     | Primary keyword naturally                       |
+| At least one H2     | Primary keyword or close variant                |
+| Quick answers       | Direct, keyword-rich answers (1-2 sentences)    |
+| FAQ questions       | Long-tail question keywords                     |
+| Body                | Secondary keywords woven naturally, no stuffing |
 
 ## Author Attribution
 
-| Author | Use for |
-|--------|---------|
+| Author | Use for                                                    |
+| ------ | ---------------------------------------------------------- |
 | `"So"` | Default. All current posts. Technical and general content. |
 
 If additional authors are added, update this table.
@@ -215,21 +217,21 @@ Do NOT maintain a list here. Scan `src/content/blog/*.mdx` for current posts and
 
 ## Tool Pages (for internal linking)
 
-| Path | What it is |
-|------|-----------|
-| `/` | Homepage — QR generator (default URL type) |
-| `/url` | URL QR code generator |
-| `/text` | Plain text QR code |
-| `/wifi` | WiFi QR code generator |
-| `/email` | Email QR code |
-| `/phone` | Phone number QR code |
-| `/sms` | SMS QR code |
-| `/event` | Calendar event QR code |
-| `/vcard` | vCard QR code generator |
-| `/vcard/bulk` | Bulk vCard generation (CSV upload) |
-| `/mecard` | MeCard QR code |
-| `/x-profile` | X/Twitter profile QR code |
-| `/docs/mcp` | MCP server documentation |
+| Path          | What it is                                 |
+| ------------- | ------------------------------------------ |
+| `/`           | Homepage — QR generator (default URL type) |
+| `/url`        | URL QR code generator                      |
+| `/text`       | Plain text QR code                         |
+| `/wifi`       | WiFi QR code generator                     |
+| `/email`      | Email QR code                              |
+| `/phone`      | Phone number QR code                       |
+| `/sms`        | SMS QR code                                |
+| `/event`      | Calendar event QR code                     |
+| `/vcard`      | vCard QR code generator                    |
+| `/vcard/bulk` | Bulk vCard generation (CSV upload)         |
+| `/mecard`     | MeCard QR code                             |
+| `/x-profile`  | X/Twitter profile QR code                  |
+| `/docs/mcp`   | MCP server documentation                   |
 
 ## New Post Checklist
 

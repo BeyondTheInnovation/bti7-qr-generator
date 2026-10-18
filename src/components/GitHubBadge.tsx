@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { Star } from 'lucide-react';
+import { useEffect, useState } from "react";
+import { Star } from "lucide-react";
 
-const REPO = 'BeyondTheInnovation/bti7-qr-generator';
+const REPO = "BeyondTheInnovation/bti7-qr-generator";
 const REPO_URL = `https://github.com/${REPO}`;
 
 export function GitHubBadge() {
@@ -11,7 +11,7 @@ export function GitHubBadge() {
 
   useEffect(() => {
     fetch(`https://api.github.com/repos/${REPO}`, { next: { revalidate: 3600 } } as RequestInit)
-      .then((r) => r.ok ? r.json() : null)
+      .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
         if (data?.stargazers_count != null) setStars(data.stargazers_count);
       })

@@ -84,17 +84,17 @@ The CLI is built for vCards specifically. For URL-type batch jobs, you'd pipe a 
 
 ### CLI flags
 
-| Flag | Description |
-|------|-------------|
-| `-f`, `--first-name` | First name |
-| `-l`, `--last-name` | Last name |
-| `--org` | Company / organization |
-| `--title` | Job title |
-| `--phone` | Phone with type prefix (e.g. `CELL:+123...`) |
-| `--email` | Email with type prefix (e.g. `WORK:a@b.com`) |
-| `--skin` | Color preset (`classic`, `ocean`, `sunset`, `neon`, etc.) |
-| `-o`, `--output` | Output file path |
-| `--vcard-only` | Print raw vCard text, no image |
+| Flag                 | Description                                               |
+| -------------------- | --------------------------------------------------------- |
+| `-f`, `--first-name` | First name                                                |
+| `-l`, `--last-name`  | Last name                                                 |
+| `--org`              | Company / organization                                    |
+| `--title`            | Job title                                                 |
+| `--phone`            | Phone with type prefix (e.g. `CELL:+123...`)              |
+| `--email`            | Email with type prefix (e.g. `WORK:a@b.com`)              |
+| `--skin`             | Color preset (`classic`, `ocean`, `sunset`, `neon`, etc.) |
+| `-o`, `--output`     | Output file path                                          |
+| `--vcard-only`       | Print raw vCard text, no image                            |
 
 Run `bun run cli --help` for the full list.
 
@@ -119,13 +119,13 @@ Worth trying if your data is messy or you don't want to deal with a terminal. Th
 
 ## Picking the right method
 
-| Scenario | Method |
-|----------|--------|
-| Data already in a spreadsheet | Web bulk tool (CSV upload) |
-| Need automation or CI integration | CLI with bash |
-| Unstructured data or one-off batch | MCP server with AI |
-| Someone who doesn't use a terminal | Web bulk tool or MCP |
-| Mixed QR types in one batch | CLI or MCP |
+| Scenario                           | Method                     |
+| ---------------------------------- | -------------------------- |
+| Data already in a spreadsheet      | Web bulk tool (CSV upload) |
+| Need automation or CI integration  | CLI with bash              |
+| Unstructured data or one-off batch | MCP server with AI         |
+| Someone who doesn't use a terminal | Web bulk tool or MCP       |
+| Mixed QR types in one batch        | CLI or MCP                 |
 
 You can mix and match. Use the MCP server to wrangle messy data into a clean CSV, then run that CSV through the web tool for visual customization.
 

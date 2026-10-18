@@ -1,5 +1,5 @@
-import { WebStandardStreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js';
-import { createMcpServer } from './tools';
+import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
+import { createMcpServer } from "./tools";
 
 const transports = new Map<string, WebStandardStreamableHTTPServerTransport>();
 
@@ -22,7 +22,7 @@ function createTransport(): WebStandardStreamableHTTPServerTransport {
  * Supports stateful sessions with Streamable HTTP transport.
  */
 export async function handleMcpRequest(req: Request): Promise<Response> {
-  const sessionId = req.headers.get('mcp-session-id');
+  const sessionId = req.headers.get("mcp-session-id");
 
   if (sessionId && transports.has(sessionId)) {
     // Existing session — route to its transport
@@ -32,14 +32,17 @@ export async function handleMcpRequest(req: Request): Promise<Response> {
 
   if (sessionId && !transports.has(sessionId)) {
     // Unknown session ID
-    return new Response(JSON.stringify({
-      jsonrpc: '2.0',
-      error: { code: -32000, message: 'Session not found' },
-      id: null,
-    }), {
-      status: 404,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return new Response(
+      JSON.stringify({
+        jsonrpc: "2.0",
+        error: { code: -32000, message: "Session not found" },
+        id: null,
+      }),
+      {
+        status: 404,
+        headers: { "Content-Type": "application/json" },
+      },
+    );
   }
 
   // New session — create transport + server

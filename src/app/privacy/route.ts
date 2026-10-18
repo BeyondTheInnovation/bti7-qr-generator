@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation';
+import { redirect } from "next/navigation";
 
 export function GET() {
-  redirect('/policies/privacy');
+  redirect("/policies/privacy");
 }

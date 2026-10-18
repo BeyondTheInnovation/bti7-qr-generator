@@ -21,17 +21,17 @@ Worth noting the difference between a URL QR code and a vCard QR code. A URL cod
 
 A vCard QR code follows the [vCard 3.0 specification](https://datatracker.ietf.org/doc/html/rfc6350) and can encode all of these fields:
 
-| Field | Example |
-|-------|---------|
-| First & last name | Jane Smith |
-| Prefix & suffix | Dr., PhD |
-| Company | Acme Corp |
-| Job title | Marketing Director |
-| Phone (multiple) | Work, mobile, home |
-| Email (multiple) | Work, personal |
-| Address | Full postal address with geo |
-| Website URL | https://example.com |
-| Notes | Free-form text |
+| Field             | Example                      |
+| ----------------- | ---------------------------- |
+| First & last name | Jane Smith                   |
+| Prefix & suffix   | Dr., PhD                     |
+| Company           | Acme Corp                    |
+| Job title         | Marketing Director           |
+| Phone (multiple)  | Work, mobile, home           |
+| Email (multiple)  | Work, personal               |
+| Address           | Full postal address with geo |
+| Website URL       | https://example.com          |
+| Notes             | Free-form text               |
 
 That's way more than what fits on a printed card. Your physical card probably shows a name, title, and email. The QR code behind it can carry your full mailing address, three different phone numbers, and a link to your portfolio. And the same vCard QR code works in other places too — I use the same one in my [email signature](/blog/qr-code-email-signatures).
 
@@ -88,13 +88,13 @@ This is what the scanning phone actually reads. It parses these fields and maps 
 
 Both encode contact data. **MeCard** is a simpler format; the tradeoff is completeness vs. size.
 
-| | vCard | MeCard |
-|---|-------|--------|
-| Fields supported | 10+ | 6 |
-| Multiple phones/emails | Yes | No |
-| Address support | Full 7-component | Basic |
-| QR code size | Larger | Smaller |
-| Best for | Full contact profiles | Minimal info, small print |
+|                        | vCard                 | MeCard                    |
+| ---------------------- | --------------------- | ------------------------- |
+| Fields supported       | 10+                   | 6                         |
+| Multiple phones/emails | Yes                   | No                        |
+| Address support        | Full 7-component      | Basic                     |
+| QR code size           | Larger                | Smaller                   |
+| Best for               | Full contact profiles | Minimal info, small print |
 
 If your business card has room for a decent-sized QR code (at least 2cm x 2cm), use vCard. MeCard only makes sense when you're printing on something tiny like a badge or sticker where physical space is the bottleneck, not data.
 

@@ -180,10 +180,7 @@ const mdxComponents = {
     </thead>
   ),
   th: ({ children, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
-    <th
-      className="px-4 py-3 text-left font-semibold text-xs uppercase tracking-wider"
-      {...props}
-    >
+    <th className="px-4 py-3 text-left font-semibold text-xs uppercase tracking-wider" {...props}>
       {children}
     </th>
   ),
@@ -233,11 +230,7 @@ const mdxComponents = {
 
 // ─── Page ───────────────────────────────────────────────────────────────────
 
-export default async function BlogPostPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) notFound();
@@ -303,9 +296,7 @@ export default async function BlogPostPage({
   }));
 
   // Pattern 2: ### Q: question + answer text
-  const faqQMatches = [
-    ...post.content.matchAll(/###\s+Q:\s+(.+)\n+([\s\S]+?)(?=\n###|\n##|$)/g),
-  ];
+  const faqQMatches = [...post.content.matchAll(/###\s+Q:\s+(.+)\n+([\s\S]+?)(?=\n###|\n##|$)/g)];
   const faqQItems = faqQMatches.map(([, question, answer]) => ({
     "@type": "Question" as const,
     name: question.trim(),
@@ -341,146 +332,143 @@ export default async function BlogPostPage({
 
       {/* Main grid: ToC sidebar | article | TLDR sidebar */}
       <div className="grid flex-1 min-h-0 lg:grid-cols-[200px_1fr] xl:grid-cols-[200px_1fr_260px]">
+        {/* ── Left: Table of Contents ── */}
+        <aside className="border-b border-border lg:border-b-0 lg:border-r border-border shrink-0 lg:overflow-y-auto">
+          <div className="hidden lg:block">
+            <div className="px-5 py-3 border-b border-border">
+              <Link
+                href="/blog"
+                className="text-xs text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5"
+              >
+                <ChevronsRight className="size-3 rotate-180" />
+                All articles
+              </Link>
+            </div>
+            <BlogToC headings={headings} variant="sidebar" />
+          </div>
+          {/* Mobile: inline collapsible */}
+          <div className="lg:hidden px-5 py-3">
+            <BlogToC headings={headings} variant="inline" />
+          </div>
+        </aside>
 
-          {/* ── Left: Table of Contents ── */}
-          <aside className="border-b border-border lg:border-b-0 lg:border-r border-border shrink-0 lg:overflow-y-auto">
-            <div className="hidden lg:block">
-              <div className="px-5 py-3 border-b border-border">
-                <Link
-                  href="/blog"
-                  className="text-xs text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1.5"
-                >
-                  <ChevronsRight className="size-3 rotate-180" />
-                  All articles
-                </Link>
+        {/* ── Center: Article content ── */}
+        <div className="flex-1 overflow-y-auto">
+          <div className="px-8 py-8 max-w-3xl">
+            {/* Article header */}
+            <div className="mb-8">
+              <div className="flex items-center gap-2 mb-4 flex-wrap">
+                <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <Calendar className="size-3" />
+                  {formatDate(post.date)}
+                </span>
+                <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <Clock className="size-3" />
+                  {post.readTime} min read
+                </span>
+                {post.tags.slice(0, 3).map((tag) => (
+                  <BlogTag key={tag} tag={tag} className="text-[10px]" />
+                ))}
               </div>
-              <BlogToC headings={headings} variant="sidebar" />
-            </div>
-            {/* Mobile: inline collapsible */}
-            <div className="lg:hidden px-5 py-3">
-              <BlogToC headings={headings} variant="inline" />
-            </div>
-          </aside>
 
-          {/* ── Center: Article content ── */}
-          <div className="flex-1 overflow-y-auto">
-            <div className="px-8 py-8 max-w-3xl">
-              {/* Article header */}
-              <div className="mb-8">
-                <div className="flex items-center gap-2 mb-4 flex-wrap">
-                  <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                    <Calendar className="size-3" />
-                    {formatDate(post.date)}
-                  </span>
-                  <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                    <Clock className="size-3" />
-                    {post.readTime} min read
-                  </span>
-                  {post.tags.slice(0, 3).map((tag) => (
+              <h1 className="text-2xl md:text-3xl font-semibold text-foreground leading-tight mb-4">
+                {post.title}
+              </h1>
+              <p className="text-base text-muted-foreground leading-relaxed">{post.description}</p>
+            </div>
+
+            {/* Divider */}
+            <div className="mb-8 h-px bg-border" />
+
+            {/* Article */}
+            <article className="min-w-0">
+              <MDXRemote
+                source={post.content}
+                components={mdxComponents}
+                options={{
+                  mdxOptions: {
+                    remarkPlugins: [remarkGfm],
+                    rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]],
+                  },
+                }}
+              />
+            </article>
+
+            {/* Related posts */}
+            {related.length > 0 && (
+              <div className="mt-16">
+                <div className="h-px bg-border mb-8" />
+                <h2 className="text-lg font-semibold text-foreground mb-4">Related Articles</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border border border-border">
+                  {related.map((rp) => (
+                    <Link
+                      key={rp.slug}
+                      href={`/blog/${rp.slug}`}
+                      className="group bg-card p-5 hover:bg-accent/30 transition-colors"
+                    >
+                      <h3 className="text-sm font-semibold text-card-foreground leading-snug group-hover:text-primary transition-colors line-clamp-2 mb-3">
+                        {rp.title}
+                      </h3>
+                      <span className="flex items-center gap-1 text-xs font-medium text-primary group-hover:gap-2 transition-all">
+                        Read article
+                        <ChevronsRight className="size-3" strokeWidth={2.5} />
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* ── Right: TLDR panel ── */}
+        <aside className="hidden xl:block border-l border-border overflow-y-auto">
+          <div className="px-5 py-4 border-b border-border">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+              TLDR
+            </p>
+          </div>
+          <div className="px-5 py-4 space-y-4">
+            <p className="text-[13px] text-muted-foreground leading-relaxed">{post.description}</p>
+            {post.tags.length > 0 && (
+              <div className="-mx-5 border-t border-border pt-4 px-5">
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-2">
+                  Tags
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {post.tags.map((tag) => (
                     <BlogTag key={tag} tag={tag} className="text-[10px]" />
                   ))}
                 </div>
-
-                <h1 className="text-2xl md:text-3xl font-semibold text-foreground leading-tight mb-4">
-                  {post.title}
-                </h1>
-                <p className="text-base text-muted-foreground leading-relaxed">
-                  {post.description}
-                </p>
               </div>
-
-              {/* Divider */}
-              <div className="mb-8 h-px bg-border" />
-
-              {/* Article */}
-              <article className="min-w-0">
-                <MDXRemote
-                  source={post.content}
-                  components={mdxComponents}
-                  options={{
-                    mdxOptions: {
-                      remarkPlugins: [remarkGfm],
-                      rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]],
-                    },
-                  }}
-                />
-              </article>
-
-              {/* Related posts */}
-              {related.length > 0 && (
-                <div className="mt-16">
-                  <div className="h-px bg-border mb-8" />
-                  <h2 className="text-lg font-semibold text-foreground mb-4">Related Articles</h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-border border border-border">
-                    {related.map((rp) => (
-                      <Link
-                        key={rp.slug}
-                        href={`/blog/${rp.slug}`}
-                        className="group bg-card p-5 hover:bg-accent/30 transition-colors"
-                      >
-                        <h3 className="text-sm font-semibold text-card-foreground leading-snug group-hover:text-primary transition-colors line-clamp-2 mb-3">
-                          {rp.title}
-                        </h3>
-                        <span className="flex items-center gap-1 text-xs font-medium text-primary group-hover:gap-2 transition-all">
-                          Read article
-                          <ChevronsRight className="size-3" strokeWidth={2.5} />
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
+            )}
+            {latest.length > 0 && (
+              <div className="-mx-5 border-t border-border pt-4 px-5">
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-3">
+                  Latest
+                </p>
+                <div className="space-y-0">
+                  {latest.map((lp) => (
+                    <Link
+                      key={lp.slug}
+                      href={`/blog/${lp.slug}`}
+                      className="group flex items-start gap-2 py-2 border-b border-border last:border-b-0 hover:bg-accent/30 -mx-5 px-5 transition-colors"
+                    >
+                      <ChevronsRight
+                        className="size-3 shrink-0 mt-0.5 text-muted-foreground group-hover:text-primary transition-colors"
+                        strokeWidth={2.5}
+                      />
+                      <span className="text-[12px] leading-snug text-muted-foreground group-hover:text-foreground transition-colors line-clamp-2">
+                        {lp.title}
+                      </span>
+                    </Link>
+                  ))}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
-
-          {/* ── Right: TLDR panel ── */}
-          <aside className="hidden xl:block border-l border-border overflow-y-auto">
-            <div className="px-5 py-4 border-b border-border">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
-                TLDR
-              </p>
-            </div>
-            <div className="px-5 py-4 space-y-4">
-              <p className="text-[13px] text-muted-foreground leading-relaxed">
-                {post.description}
-              </p>
-              {post.tags.length > 0 && (
-                <div className="-mx-5 border-t border-border pt-4 px-5">
-                  <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-2">
-                    Tags
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {post.tags.map((tag) => (
-                      <BlogTag key={tag} tag={tag} className="text-[10px]" />
-                    ))}
-                  </div>
-                </div>
-              )}
-              {latest.length > 0 && (
-                <div className="-mx-5 border-t border-border pt-4 px-5">
-                  <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-3">
-                    Latest
-                  </p>
-                  <div className="space-y-0">
-                    {latest.map((lp) => (
-                      <Link
-                        key={lp.slug}
-                        href={`/blog/${lp.slug}`}
-                        className="group flex items-start gap-2 py-2 border-b border-border last:border-b-0 hover:bg-accent/30 -mx-5 px-5 transition-colors"
-                      >
-                        <ChevronsRight className="size-3 shrink-0 mt-0.5 text-muted-foreground group-hover:text-primary transition-colors" strokeWidth={2.5} />
-                        <span className="text-[12px] leading-snug text-muted-foreground group-hover:text-foreground transition-colors line-clamp-2">
-                          {lp.title}
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </aside>
-        </div>
-
+        </aside>
+      </div>
     </>
   );
 }

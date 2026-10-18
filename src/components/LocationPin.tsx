@@ -1,81 +1,84 @@
-'use client';
+"use client";
 
-import { useState, useCallback } from 'react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { MapPin, Check, Loader2, X } from 'lucide-react';
-import { parseCoordinates, isShortMapLink, resolveShortLink, toVCardGeo } from '@/lib/geo';
+import { useState, useCallback } from "react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { MapPin, Check, Loader2, X } from "lucide-react";
+import { parseCoordinates, isShortMapLink, resolveShortLink, toVCardGeo } from "@/lib/geo";
 
 interface Props {
   value: string; // current geo value ("lat;lng" or "")
   onChange: (geo: string) => void;
 }
 
-type Status = 'idle' | 'resolving' | 'pinned' | 'error';
+type Status = "idle" | "resolving" | "pinned" | "error";
 
 export default function LocationPin({ value, onChange }: Props) {
   // Local input state only used while user is actively typing/editing
-  const [draft, setDraft] = useState('');
+  const [draft, setDraft] = useState("");
   const [editing, setEditing] = useState(false);
   const [resolving, setResolving] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   const isPinned = !!value && !editing && !resolving;
-  const displayCoords = value ? value.replace(';', ', ') : '';
-  const inputValue = editing ? draft : (value ? value.replace(';', ', ') : '');
+  const displayCoords = value ? value.replace(";", ", ") : "";
+  const inputValue = editing ? draft : value ? value.replace(";", ", ") : "";
 
-  const status: Status = resolving ? 'resolving' : error ? 'error' : isPinned ? 'pinned' : 'idle';
+  const status: Status = resolving ? "resolving" : error ? "error" : isPinned ? "pinned" : "idle";
 
-  const handlePin = useCallback(async (raw: string) => {
-    const trimmed = raw.trim();
-    if (!trimmed) return;
+  const handlePin = useCallback(
+    async (raw: string) => {
+      const trimmed = raw.trim();
+      if (!trimmed) return;
 
-    setError('');
+      setError("");
 
-    // If it's a short link, resolve it first
-    if (isShortMapLink(trimmed)) {
-      setResolving(true);
-      try {
-        const resolved = await resolveShortLink(trimmed);
-        const coords = parseCoordinates(resolved);
-        if (coords) {
-          onChange(toVCardGeo(coords.lat, coords.lng));
-          setEditing(false);
-        } else {
-          setError('Could not extract coordinates from the resolved URL');
+      // If it's a short link, resolve it first
+      if (isShortMapLink(trimmed)) {
+        setResolving(true);
+        try {
+          const resolved = await resolveShortLink(trimmed);
+          const coords = parseCoordinates(resolved);
+          if (coords) {
+            onChange(toVCardGeo(coords.lat, coords.lng));
+            setEditing(false);
+          } else {
+            setError("Could not extract coordinates from the resolved URL");
+          }
+        } catch {
+          setError("Failed to resolve short link");
         }
-      } catch {
-        setError('Failed to resolve short link');
+        setResolving(false);
+        return;
       }
-      setResolving(false);
-      return;
-    }
 
-    // Try direct parse (full Google Maps URL or raw coords)
-    const coords = parseCoordinates(trimmed);
-    if (coords) {
-      onChange(toVCardGeo(coords.lat, coords.lng));
-      setEditing(false);
-    } else {
-      setError('Could not parse coordinates. Try a Google Maps link or lat, lng');
-    }
-  }, [onChange]);
+      // Try direct parse (full Google Maps URL or raw coords)
+      const coords = parseCoordinates(trimmed);
+      if (coords) {
+        onChange(toVCardGeo(coords.lat, coords.lng));
+        setEditing(false);
+      } else {
+        setError("Could not parse coordinates. Try a Google Maps link or lat, lng");
+      }
+    },
+    [onChange],
+  );
 
   const handleClear = () => {
-    onChange('');
-    setDraft('');
+    onChange("");
+    setDraft("");
     setEditing(false);
-    setError('');
+    setError("");
   };
 
   const startEditing = () => {
-    setDraft(value ? value.replace(';', ', ') : '');
+    setDraft(value ? value.replace(";", ", ") : "");
     setEditing(true);
-    setError('');
+    setError("");
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       e.preventDefault();
       handlePin(draft);
     }
@@ -87,10 +90,10 @@ export default function LocationPin({ value, onChange }: Props) {
         <div className="relative flex-1">
           <Input
             value={inputValue}
-            onChange={e => {
+            onChange={(e) => {
               if (!editing) startEditing();
               setDraft(e.target.value);
-              if (error) setError('');
+              if (error) setError("");
             }}
             onFocus={() => {
               if (!editing && !isPinned) startEditing();
@@ -104,16 +107,22 @@ export default function LocationPin({ value, onChange }: Props) {
               }
             }}
             placeholder="Google Maps link or lat, lng"
-            className={status === 'pinned' ? 'pr-8 border-emerald-500/50 bg-emerald-500/5' : status === 'error' ? 'border-destructive/50' : ''}
+            className={
+              status === "pinned"
+                ? "pr-8 border-emerald-500/50 bg-emerald-500/5"
+                : status === "error"
+                  ? "border-destructive/50"
+                  : ""
+            }
           />
-          {status === 'pinned' && (
+          {status === "pinned" && (
             <Check className="absolute right-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-emerald-500" />
           )}
-          {status === 'resolving' && (
+          {status === "resolving" && (
             <Loader2 className="absolute right-2.5 top-1/2 -translate-y-1/2 h-4 w-4 animate-spin text-muted-foreground" />
           )}
         </div>
-        {status === 'idle' || status === 'error' ? (
+        {status === "idle" || status === "error" ? (
           <Button
             type="button"
             variant="outline"
@@ -136,15 +145,13 @@ export default function LocationPin({ value, onChange }: Props) {
           </Button>
         )}
       </div>
-      {status === 'pinned' && displayCoords && (
+      {status === "pinned" && displayCoords && (
         <p className="text-xs text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
           <MapPin className="h-3 w-3" />
           {displayCoords}
         </p>
       )}
-      {status === 'error' && error && (
-        <p className="text-xs text-destructive">{error}</p>
-      )}
+      {status === "error" && error && <p className="text-xs text-destructive">{error}</p>}
     </div>
   );
 }

@@ -1,45 +1,41 @@
-import type { Metadata } from 'next';
-import Script from 'next/script';
-import Link from 'next/link';
-import { ThemeProvider } from 'next-themes';
-import { SiteNav } from '@/components/SiteNav';
-import { GitHubBadge } from '@/components/GitHubBadge';
-import { SiteFooter } from '@/components/SiteFooter';
-import '@fontsource-variable/geist';
-import '@/index.css';
+import type { Metadata } from "next";
+import Script from "next/script";
+import Link from "next/link";
+import { ThemeProvider } from "next-themes";
+import { SiteNav } from "@/components/SiteNav";
+import { GitHubBadge } from "@/components/GitHubBadge";
+import { SiteFooter } from "@/components/SiteFooter";
+import "@fontsource-variable/geist";
+import "@/index.css";
 
-const GA_ID = 'G-R2J5HK6LX2';
+const GA_ID = "G-R2J5HK6LX2";
 
-const BASE_URL = 'https://qr.beyondtheinnovation.com';
+const BASE_URL = "https://qr.beyondtheinnovation.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: 'Free QR Code Generator — URLs, vCards, WiFi, Events & More',
-    template: '%s | QR Code Generator',
+    default: "Free QR Code Generator — URLs, vCards, WiFi, Events & More",
+    template: "%s | QR Code Generator",
   },
   description:
-    'Generate custom QR codes for free. Create QR codes for URLs, vCards, WiFi passwords, emails, phone numbers, SMS, calendar events, and more.',
+    "Generate custom QR codes for free. Create QR codes for URLs, vCards, WiFi passwords, emails, phone numbers, SMS, calendar events, and more.",
   keywords:
-    'QR code generator, free QR code, vCard QR code, WiFi QR code, QR code maker, create QR code online, custom QR code',
-  authors: [{ name: 'Beyond The Innovation', url: 'https://beyondtheinnovation.com' }],
+    "QR code generator, free QR code, vCard QR code, WiFi QR code, QR code maker, create QR code online, custom QR code",
+  authors: [{ name: "Beyond The Innovation", url: "https://beyondtheinnovation.com" }],
   openGraph: {
-    type: 'website',
-    siteName: 'QR Code Generator by Beyond The Innovation',
-    locale: 'en_US',
+    type: "website",
+    siteName: "QR Code Generator by Beyond The Innovation",
+    locale: "en_US",
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
   },
-  icons: { icon: '/favicon.svg' },
-  manifest: '/manifest.json',
+  icons: { icon: "/favicon.svg" },
+  manifest: "/manifest.json",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -78,9 +74,7 @@ export default function RootLayout({
               </header>
 
               {/* Page content */}
-              <main className="flex-1 min-h-0 flex flex-col">
-                {children}
-              </main>
+              <main className="flex-1 min-h-0 flex flex-col">{children}</main>
 
               {/* Footer */}
               <SiteFooter />

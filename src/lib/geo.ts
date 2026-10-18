@@ -33,7 +33,7 @@ export function parseCoordinates(input: string): { lat: number; lng: number } | 
     }
 
     // Pattern: ?q=lat,lng or &ll=lat,lng
-    for (const param of ['q', 'll', 'center', 'query']) {
+    for (const param of ["q", "ll", "center", "query"]) {
       const val = url.searchParams.get(param);
       if (val) {
         const coordMatch = val.match(/^(-?\d+\.?\d+),(-?\d+\.?\d+)$/);
@@ -69,7 +69,7 @@ function isValidCoord(lat: number, lng: number): boolean {
 export function isShortMapLink(input: string): boolean {
   try {
     const url = new URL(input.trim());
-    return url.hostname === 'maps.app.goo.gl' || url.hostname === 'goo.gl';
+    return url.hostname === "maps.app.goo.gl" || url.hostname === "goo.gl";
   } catch {
     return false;
   }
@@ -80,7 +80,7 @@ export function isShortMapLink(input: string): boolean {
  */
 export async function resolveShortLink(shortUrl: string): Promise<string> {
   const res = await fetch(`/api/resolve-url?url=${encodeURIComponent(shortUrl)}`);
-  if (!res.ok) throw new Error('Failed to resolve URL');
+  if (!res.ok) throw new Error("Failed to resolve URL");
   const data = await res.json();
   return data.resolved;
 }

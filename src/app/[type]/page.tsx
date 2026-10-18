@@ -1,12 +1,10 @@
-import type { Metadata } from 'next';
-import QRGenerator from '@/components/QRGenerator';
-import { PAGE_SEO, getCanonicalURL } from '@/seo';
-import { QR_TYPES } from '@/qr-types';
+import type { Metadata } from "next";
+import QRGenerator from "@/components/QRGenerator";
+import { PAGE_SEO, getCanonicalURL } from "@/seo";
+import { QR_TYPES } from "@/qr-types";
 
 export function generateStaticParams() {
-  return QR_TYPES
-    .filter(t => t.id !== 'vcard')
-    .map(t => ({ type: t.id }));
+  return QR_TYPES.filter((t) => t.id !== "vcard").map((t) => ({ type: t.id }));
 }
 
 export async function generateMetadata({
@@ -19,7 +17,7 @@ export async function generateMetadata({
 
   if (!seo) {
     return {
-      title: 'Free QR Code Generator',
+      title: "Free QR Code Generator",
     };
   }
 
@@ -42,11 +40,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function TypePage({
-  params,
-}: {
-  params: Promise<{ type: string }>;
-}) {
+export default async function TypePage({ params }: { params: Promise<{ type: string }> }) {
   const { type } = await params;
   return <QRGenerator type={type} />;
 }

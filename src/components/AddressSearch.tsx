@@ -1,7 +1,7 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
-import type { Address } from '../vcard';
-import { Input } from '@/components/ui/input';
-import { Card } from '@/components/ui/card';
+import { useState, useRef, useEffect, useCallback } from "react";
+import type { Address } from "../vcard";
+import { Input } from "@/components/ui/input";
+import { Card } from "@/components/ui/card";
 
 interface Props {
   onSelect: (address: Partial<Address>) => void;
@@ -27,7 +27,7 @@ interface PhotonFeature {
  * Returns structured address components + lat/lng for GEO field.
  */
 export default function AddressSearch({ onSelect }: Props) {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [results, setResults] = useState<PhotonFeature[]>([]);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -47,13 +47,13 @@ export default function AddressSearch({ onSelect }: Props) {
     try {
       const res = await fetch(
         `https://photon.komoot.io/api/?q=${encodeURIComponent(q)}&limit=6&lang=en`,
-        { signal: controller.signal }
+        { signal: controller.signal },
       );
       const data = await res.json();
       setResults(data.features || []);
       setOpen(true);
     } catch (e) {
-      if (e instanceof DOMException && e.name === 'AbortError') return;
+      if (e instanceof DOMException && e.name === "AbortError") return;
       setResults([]);
     } finally {
       setLoading(false);
@@ -78,15 +78,15 @@ export default function AddressSearch({ onSelect }: Props) {
     const p = feature.properties;
     const [lng, lat] = feature.geometry.coordinates;
 
-    const street = [p.housenumber, p.street || p.name].filter(Boolean).join(' ');
+    const street = [p.housenumber, p.street || p.name].filter(Boolean).join(" ");
 
     onSelect({
       street: street,
-      street2: '',
-      city: p.city || '',
-      state: p.state || '',
-      zip: p.postcode || '',
-      country: p.country || '',
+      street2: "",
+      city: p.city || "",
+      state: p.state || "",
+      zip: p.postcode || "",
+      country: p.country || "",
       geo: `${lat};${lng}`,
     });
 
@@ -101,8 +101,8 @@ export default function AddressSearch({ onSelect }: Props) {
         setOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
   return (
@@ -128,7 +128,7 @@ export default function AddressSearch({ onSelect }: Props) {
                 className="cursor-pointer px-3 py-2 transition-colors hover:bg-muted/50"
               >
                 <span className="block text-sm font-medium text-foreground">
-                  {r.properties.name || r.properties.street || 'Unknown'}
+                  {r.properties.name || r.properties.street || "Unknown"}
                 </span>
                 <span className="block text-xs text-muted-foreground">{formatDetail(r)}</span>
               </li>
@@ -142,12 +142,10 @@ export default function AddressSearch({ onSelect }: Props) {
 
 function formatLabel(f: PhotonFeature): string {
   const p = f.properties;
-  return [p.name || p.street, p.city, p.country].filter(Boolean).join(', ');
+  return [p.name || p.street, p.city, p.country].filter(Boolean).join(", ");
 }
 
 function formatDetail(f: PhotonFeature): string {
   const p = f.properties;
-  return [p.street, p.city, p.state, p.postcode, p.country]
-    .filter(Boolean)
-    .join(', ');
+  return [p.street, p.city, p.state, p.postcode, p.country].filter(Boolean).join(", ");
 }

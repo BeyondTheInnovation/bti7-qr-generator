@@ -27,20 +27,20 @@ That tells the phone the encryption type, SSID, and password. Nothing else to it
 
 A WiFi QR code has four fields. Only the network name is strictly required.
 
-| Field | Key | Description | Example |
-|-------|-----|-------------|---------|
-| Encryption | `T` | Security protocol | `WPA`, `WEP`, `nopass` |
-| Network name | `S` | Your SSID | `CafeWiFi` |
-| Password | `P` | Network password | `welcome2024` |
-| Hidden | `H` | Hidden network flag | `true` (optional) |
+| Field        | Key | Description         | Example                |
+| ------------ | --- | ------------------- | ---------------------- |
+| Encryption   | `T` | Security protocol   | `WPA`, `WEP`, `nopass` |
+| Network name | `S` | Your SSID           | `CafeWiFi`             |
+| Password     | `P` | Network password    | `welcome2024`          |
+| Hidden       | `H` | Hidden network flag | `true` (optional)      |
 
 Both WPA2 and WPA3 networks use `T:WPA` in the encoding. The phone and router figure out which version to use on their own.
 
-| Type | Security | When you'd use it |
-|------|----------|----------|
-| WPA | Strong (WPA2/WPA3) | Home, office, most networks |
-| WEP | Weak (deprecated) | Legacy devices only |
-| nopass | None | Open/public networks |
+| Type   | Security           | When you'd use it           |
+| ------ | ------------------ | --------------------------- |
+| WPA    | Strong (WPA2/WPA3) | Home, office, most networks |
+| WEP    | Weak (deprecated)  | Legacy devices only         |
+| nopass | None               | Open/public networks        |
 
 If you're still on WEP, switch. It was cracked ages ago and every router sold in the last twenty years supports WPA2 at minimum.
 
@@ -106,7 +106,7 @@ The remote endpoint is at `qr.beyondtheinnovation.com/mcp`. For local use with C
 
 The password sits inside the QR code as plain text. Anyone who scans it, or even just photographs it, has your credentials. So don't put your main network password on a poster in the lobby.
 
-Set up a guest network instead. Most routers let you create a separate guest SSID that's isolated from your primary network and your devices. Put the QR code on *that* network.
+Set up a guest network instead. Most routers let you create a separate guest SSID that's isolated from your primary network and your devices. Put the QR code on _that_ network.
 
 If you rotate your guest password (and you probably should, at least monthly for public-facing spaces), just regenerate the QR code and reprint it. The old code will still scan fine, but the password won't match anymore, so the connection fails silently.
 

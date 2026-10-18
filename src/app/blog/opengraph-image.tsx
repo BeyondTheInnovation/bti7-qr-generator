@@ -24,8 +24,7 @@ export default function Image() {
         style={{
           position: "absolute",
           inset: 0,
-          backgroundImage:
-            "radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
         }}
       />
@@ -52,8 +51,7 @@ export default function Image() {
           style={{
             position: "absolute",
             inset: 0,
-            backgroundImage:
-              "radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)",
+            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)",
             backgroundSize: "48px 48px",
           }}
         />

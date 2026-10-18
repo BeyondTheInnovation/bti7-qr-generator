@@ -44,12 +44,7 @@ function buildUrlList(): string[] {
   ];
 
   // Static pages
-  const staticPages = [
-    "/vcard/bulk",
-    "/docs/mcp",
-    "/policies/privacy",
-    "/policies/tos",
-  ];
+  const staticPages = ["/vcard/bulk", "/docs/mcp", "/policies/privacy", "/policies/tos"];
 
   return [
     BASE_URL,

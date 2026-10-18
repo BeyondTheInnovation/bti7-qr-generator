@@ -1,20 +1,20 @@
 // All QR code type encoders — each takes form data and returns raw string for QR encoding
 
-import { type VCardData, buildVCard, hasMinimumData } from './vcard';
+import { type VCardData, buildVCard, hasMinimumData } from "./vcard";
 
 // ── Type definitions ──
 
 export type QRType =
-  | 'url'
-  | 'text'
-  | 'phone'
-  | 'sms'
-  | 'email'
-  | 'wifi'
-  | 'vcard'
-  | 'event'
-  | 'x-profile'
-  | 'mecard';
+  | "url"
+  | "text"
+  | "phone"
+  | "sms"
+  | "email"
+  | "wifi"
+  | "vcard"
+  | "event"
+  | "x-profile"
+  | "mecard";
 
 export interface QRTypeConfig {
   id: QRType;
@@ -24,16 +24,16 @@ export interface QRTypeConfig {
 }
 
 export const QR_TYPES: QRTypeConfig[] = [
-  { id: 'url', label: 'URL', icon: '🔗', description: 'Website link' },
-  { id: 'text', label: 'Text', icon: '📝', description: 'Plain text' },
-  { id: 'vcard', label: 'vCard', icon: '👤', description: 'Contact card' },
-  { id: 'wifi', label: 'Wi-Fi', icon: '📶', description: 'Network credentials' },
-  { id: 'email', label: 'Email', icon: '✉️', description: 'Compose email' },
-  { id: 'phone', label: 'Phone', icon: '📞', description: 'Call number' },
-  { id: 'sms', label: 'SMS', icon: '💬', description: 'Text message' },
-  { id: 'event', label: 'Event', icon: '📅', description: 'Calendar event' },
-  { id: 'mecard', label: 'MeCard', icon: '🪪', description: 'Compact contact' },
-  { id: 'x-profile', label: 'X / Twitter', icon: '𝕏', description: 'Profile link' },
+  { id: "url", label: "URL", icon: "🔗", description: "Website link" },
+  { id: "text", label: "Text", icon: "📝", description: "Plain text" },
+  { id: "vcard", label: "vCard", icon: "👤", description: "Contact card" },
+  { id: "wifi", label: "Wi-Fi", icon: "📶", description: "Network credentials" },
+  { id: "email", label: "Email", icon: "✉️", description: "Compose email" },
+  { id: "phone", label: "Phone", icon: "📞", description: "Call number" },
+  { id: "sms", label: "SMS", icon: "💬", description: "Text message" },
+  { id: "event", label: "Event", icon: "📅", description: "Calendar event" },
+  { id: "mecard", label: "MeCard", icon: "🪪", description: "Compact contact" },
+  { id: "x-profile", label: "X / Twitter", icon: "𝕏", description: "Profile link" },
 ];
 
 // ── Form data types ──
@@ -64,7 +64,7 @@ export interface EmailData {
 export interface WiFiData {
   ssid: string;
   password: string;
-  encryption: 'WPA' | 'WEP' | 'nopass';
+  encryption: "WPA" | "WEP" | "nopass";
   hidden: boolean;
 }
 
@@ -97,29 +97,41 @@ export interface XProfileData {
 // ── Default values ──
 
 export const defaults: Record<QRType, unknown> = {
-  url: { url: '' } as URLData,
-  text: { text: '' } as TextData,
-  phone: { phone: '' } as PhoneData,
-  sms: { phone: '', message: '' } as SMSData,
-  email: { to: '', subject: '', body: '' } as EmailData,
-  wifi: { ssid: '', password: '', encryption: 'WPA', hidden: false } as WiFiData,
+  url: { url: "" } as URLData,
+  text: { text: "" } as TextData,
+  phone: { phone: "" } as PhoneData,
+  sms: { phone: "", message: "" } as SMSData,
+  email: { to: "", subject: "", body: "" } as EmailData,
+  wifi: { ssid: "", password: "", encryption: "WPA", hidden: false } as WiFiData,
   vcard: null, // uses VCardData from vcard.ts
   event: {
-    title: '', location: '', description: '',
-    startDate: '', startTime: '', endDate: '', endTime: '', allDay: false,
+    title: "",
+    location: "",
+    description: "",
+    startDate: "",
+    startTime: "",
+    endDate: "",
+    endTime: "",
+    allDay: false,
   } as EventData,
   mecard: {
-    firstName: '', lastName: '', phone: '', email: '',
-    org: '', url: '', address: '', note: '',
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    org: "",
+    url: "",
+    address: "",
+    note: "",
   } as MeCardData,
-  'x-profile': { username: '' } as XProfileData,
+  "x-profile": { username: "" } as XProfileData,
 };
 
 // ── Encoders ──
 
 function encodeURL(data: URLData): string {
   let url = data.url.trim();
-  if (url && !url.match(/^https?:\/\//i)) url = 'https://' + url;
+  if (url && !url.match(/^https?:\/\//i)) url = "https://" + url;
   return url;
 }
 
@@ -142,34 +154,31 @@ function encodeEmail(data: EmailData): string {
   const parts: string[] = [];
   if (data.subject) parts.push(`subject=${encodeURIComponent(data.subject)}`);
   if (data.body) parts.push(`body=${encodeURIComponent(data.body)}`);
-  const query = parts.length ? `?${parts.join('&')}` : '';
+  const query = parts.length ? `?${parts.join("&")}` : "";
   return `mailto:${data.to.trim()}${query}`;
 }
 
 function encodeWiFi(data: WiFiData): string {
-  const esc = (s: string) => s.replace(/[\\;,"":]/g, '\\$&');
+  const esc = (s: string) => s.replace(/[\\;,"":]/g, "\\$&");
   let str = `WIFI:T:${data.encryption};S:${esc(data.ssid)};`;
-  if (data.encryption !== 'nopass' && data.password) {
+  if (data.encryption !== "nopass" && data.password) {
     str += `P:${esc(data.password)};`;
   }
-  if (data.hidden) str += 'H:true;';
-  str += ';';
+  if (data.hidden) str += "H:true;";
+  str += ";";
   return str;
 }
 
 function encodeEvent(data: EventData): string {
   const fmt = (date: string, time: string, allDay: boolean) => {
-    if (!date) return '';
-    const d = date.replace(/-/g, '');
+    if (!date) return "";
+    const d = date.replace(/-/g, "");
     if (allDay) return d;
-    const t = (time || '0000').replace(/:/g, '') + '00';
+    const t = (time || "0000").replace(/:/g, "") + "00";
     return `${d}T${t}`;
   };
 
-  const lines: string[] = [
-    'BEGIN:VEVENT',
-    `SUMMARY:${data.title}`,
-  ];
+  const lines: string[] = ["BEGIN:VEVENT", `SUMMARY:${data.title}`];
   if (data.location) lines.push(`LOCATION:${data.location}`);
   if (data.description) lines.push(`DESCRIPTION:${data.description}`);
 
@@ -184,13 +193,13 @@ function encodeEvent(data: EventData): string {
       if (end) lines.push(`DTEND:${end}`);
     }
   }
-  lines.push('END:VEVENT');
-  return lines.join('\r\n');
+  lines.push("END:VEVENT");
+  return lines.join("\r\n");
 }
 
 function encodeMeCard(data: MeCardData): string {
-  const esc = (s: string) => s.replace(/[\\;,"":]/g, '\\$&');
-  let str = 'MECARD:';
+  const esc = (s: string) => s.replace(/[\\;,"":]/g, "\\$&");
+  let str = "MECARD:";
   if (data.lastName || data.firstName) {
     str += `N:${esc(data.lastName)},${esc(data.firstName)};`;
   }
@@ -200,12 +209,12 @@ function encodeMeCard(data: MeCardData): string {
   if (data.url) str += `URL:${esc(data.url)};`;
   if (data.address) str += `ADR:${esc(data.address)};`;
   if (data.note) str += `NOTE:${esc(data.note)};`;
-  str += ';';
+  str += ";";
   return str;
 }
 
 function encodeXProfile(data: XProfileData): string {
-  const username = data.username.trim().replace(/^@/, '');
+  const username = data.username.trim().replace(/^@/, "");
   return `https://x.com/${username}`;
 }
 
@@ -213,32 +222,54 @@ function encodeXProfile(data: XProfileData): string {
 
 export function encode(type: QRType, data: unknown, vcardData?: VCardData): string {
   switch (type) {
-    case 'url': return encodeURL(data as URLData);
-    case 'text': return encodeText(data as TextData);
-    case 'phone': return encodePhone(data as PhoneData);
-    case 'sms': return encodeSMS(data as SMSData);
-    case 'email': return encodeEmail(data as EmailData);
-    case 'wifi': return encodeWiFi(data as WiFiData);
-    case 'vcard': return vcardData && hasMinimumData(vcardData) ? buildVCard(vcardData) : '';
-    case 'event': return encodeEvent(data as EventData);
-    case 'mecard': return encodeMeCard(data as MeCardData);
-    case 'x-profile': return encodeXProfile(data as XProfileData);
-    default: return '';
+    case "url":
+      return encodeURL(data as URLData);
+    case "text":
+      return encodeText(data as TextData);
+    case "phone":
+      return encodePhone(data as PhoneData);
+    case "sms":
+      return encodeSMS(data as SMSData);
+    case "email":
+      return encodeEmail(data as EmailData);
+    case "wifi":
+      return encodeWiFi(data as WiFiData);
+    case "vcard":
+      return vcardData && hasMinimumData(vcardData) ? buildVCard(vcardData) : "";
+    case "event":
+      return encodeEvent(data as EventData);
+    case "mecard":
+      return encodeMeCard(data as MeCardData);
+    case "x-profile":
+      return encodeXProfile(data as XProfileData);
+    default:
+      return "";
   }
 }
 
 export function hasData(type: QRType, data: unknown, vcardData?: VCardData): boolean {
   switch (type) {
-    case 'url': return !!(data as URLData).url.trim();
-    case 'text': return !!(data as TextData).text.trim();
-    case 'phone': return !!(data as PhoneData).phone.trim();
-    case 'sms': return !!(data as SMSData).phone.trim();
-    case 'email': return !!(data as EmailData).to.trim();
-    case 'wifi': return !!(data as WiFiData).ssid.trim();
-    case 'vcard': return !!vcardData && hasMinimumData(vcardData);
-    case 'event': return !!(data as EventData).title.trim() && !!(data as EventData).startDate;
-    case 'mecard': return !!((data as MeCardData).firstName || (data as MeCardData).lastName);
-    case 'x-profile': return !!(data as XProfileData).username.trim();
-    default: return false;
+    case "url":
+      return !!(data as URLData).url.trim();
+    case "text":
+      return !!(data as TextData).text.trim();
+    case "phone":
+      return !!(data as PhoneData).phone.trim();
+    case "sms":
+      return !!(data as SMSData).phone.trim();
+    case "email":
+      return !!(data as EmailData).to.trim();
+    case "wifi":
+      return !!(data as WiFiData).ssid.trim();
+    case "vcard":
+      return !!vcardData && hasMinimumData(vcardData);
+    case "event":
+      return !!(data as EventData).title.trim() && !!(data as EventData).startDate;
+    case "mecard":
+      return !!((data as MeCardData).firstName || (data as MeCardData).lastName);
+    case "x-profile":
+      return !!(data as XProfileData).username.trim();
+    default:
+      return false;
   }
 }

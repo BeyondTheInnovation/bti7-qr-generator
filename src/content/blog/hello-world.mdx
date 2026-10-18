@@ -104,27 +104,27 @@ I don't mean a 20-hour marathon. I mean a normal workday. QR encoding is simple.
 
 ```typescript
 // WiFi QR is just a formatted string
-`WIFI:T:${encryption};S:${ssid};P:${password};;`
+`WIFI:T:${encryption};S:${ssid};P:${password};;`;
 
 // Email QR is a mailto link
-`mailto:${to}?subject=${subject}&body=${body}`
+`mailto:${to}?subject=${subject}&body=${body}`;
 
 // vCard is a text block
-`BEGIN:VCARD\nVERSION:3.0\nN:${last};${first};;;\n...`
+`BEGIN:VCARD\nVERSION:3.0\nN:${last};${first};;;\n...`;
 ```
 
 You feed that string to a QR library and get an image. All three interfaces share the same encoding functions, just with different I/O around them. That's the key architectural decision: the encoders are pure functions that know nothing about where they run.
 
 Here's the stack:
 
-| Layer | What | Why |
-|-------|------|-----|
-| Framework | Next.js 15 with App Router | Web app and API routes in one project. No separate backend. |
-| Styling | Tailwind v4 + shadcn/ui | Pre-built form components saved hours. [Customization is done through skins and CSS variables](/blog/qr-code-design-best-practices). |
-| QR generation | qr-code-styling (web), qrcode (CLI/MCP) | qr-code-styling handles the canvas rendering and visual customization. qrcode is lighter for server-side PNG output. |
-| MCP server | @modelcontextprotocol/sdk | Turns any function into something an AI can call in about 20 lines of wrapper code. |
-| Runtime | Bun | The CLI and MCP stdio server run on Bun. Fast startup, native TypeScript support, no build step. |
-| Hosting | Railway | Deploy on git push. No Dockerfile, no CI config. Railpack detects the framework and builds it. |
+| Layer         | What                                    | Why                                                                                                                                  |
+| ------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Framework     | Next.js 15 with App Router              | Web app and API routes in one project. No separate backend.                                                                          |
+| Styling       | Tailwind v4 + shadcn/ui                 | Pre-built form components saved hours. [Customization is done through skins and CSS variables](/blog/qr-code-design-best-practices). |
+| QR generation | qr-code-styling (web), qrcode (CLI/MCP) | qr-code-styling handles the canvas rendering and visual customization. qrcode is lighter for server-side PNG output.                 |
+| MCP server    | @modelcontextprotocol/sdk               | Turns any function into something an AI can call in about 20 lines of wrapper code.                                                  |
+| Runtime       | Bun                                     | The CLI and MCP stdio server run on Bun. Fast startup, native TypeScript support, no build step.                                     |
+| Hosting       | Railway                                 | Deploy on git push. No Dockerfile, no CI config. Railpack detects the framework and builds it.                                       |
 
 The part that used to be hard was infrastructure: servers, deployment configs, auth. Next.js handles the web app and API routes together. Railway deploys on git push. The MCP SDK turns any function into something an AI can call. shadcn/ui meant we didn't have to design form components from scratch.
 

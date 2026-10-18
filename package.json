@@ -2,11 +2,10 @@
   "name": "qr-generator",
   "version": "2.0.0",
   "description": "QR code generator — web app, CLI, MCP server, and blog",
-  "type": "module",
-  "packageManager": "bun@1.4.3",
   "bin": {
     "vcard-qr": "./src/cli/index.ts"
   },
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -56,5 +55,6 @@
   },
   "engines": {
     "node": "22.23.3"
-  }
+  },
+  "packageManager": "bun@1.4.3"
 }

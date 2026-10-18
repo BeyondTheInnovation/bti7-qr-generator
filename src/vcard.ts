@@ -41,30 +41,30 @@ export interface VCardData {
 }
 
 export const defaultVCard: VCardData = {
-  firstName: '',
-  lastName: '',
-  prefix: '',
-  suffix: '',
-  org: '',
-  title: '',
-  phones: [{ type: 'CELL', value: '' }],
-  emails: [{ type: 'WORK', value: '' }],
+  firstName: "",
+  lastName: "",
+  prefix: "",
+  suffix: "",
+  org: "",
+  title: "",
+  phones: [{ type: "CELL", value: "" }],
+  emails: [{ type: "WORK", value: "" }],
   addresses: [],
-  url: '',
-  note: '',
+  url: "",
+  note: "",
 };
 
 export function createEmptyAddress(): Address {
   return {
-    type: 'WORK',
-    street: '',
-    street2: '',
-    city: '',
-    state: '',
-    zip: '',
-    country: '',
-    poBox: '',
-    geo: '',
+    type: "WORK",
+    street: "",
+    street2: "",
+    city: "",
+    state: "",
+    zip: "",
+    country: "",
+    poBox: "",
+    geo: "",
   };
 }
 
@@ -75,10 +75,10 @@ export function createEmptyAddress(): Address {
  */
 function escapeValue(value: string): string {
   return value
-    .replace(/\\/g, '\\\\')
-    .replace(/;/g, '\\;')
-    .replace(/,/g, '\\,')
-    .replace(/\n/g, '\\n');
+    .replace(/\\/g, "\\\\")
+    .replace(/;/g, "\\;")
+    .replace(/,/g, "\\,")
+    .replace(/\n/g, "\\n");
 }
 
 /**
@@ -94,8 +94,8 @@ function escapeValue(value: string): string {
 export function buildVCard(data: VCardData): string {
   const lines: string[] = [];
 
-  lines.push('BEGIN:VCARD');
-  lines.push('VERSION:3.0');
+  lines.push("BEGIN:VCARD");
+  lines.push("VERSION:3.0");
 
   // N: Last;First;Middle;Prefix;Suffix
   const lastName = escapeValue(data.lastName);
@@ -107,7 +107,7 @@ export function buildVCard(data: VCardData): string {
   // FN: Full display name
   const fullName = [data.prefix, data.firstName, data.lastName, data.suffix]
     .filter(Boolean)
-    .join(' ');
+    .join(" ");
   if (fullName) {
     lines.push(`FN:${escapeValue(fullName)}`);
   }
@@ -140,31 +140,36 @@ export function buildVCard(data: VCardData): string {
   // Format: ADR;TYPE=x:PO Box;Extended Addr;Street;City;State;ZIP;Country
   for (const addr of data.addresses) {
     const hasContent = [
-      addr.poBox, addr.street2, addr.street,
-      addr.city, addr.state, addr.zip, addr.country,
+      addr.poBox,
+      addr.street2,
+      addr.street,
+      addr.city,
+      addr.state,
+      addr.zip,
+      addr.country,
     ].some((v) => v.trim());
 
     if (hasContent) {
       const components = [
         escapeValue(addr.poBox.trim()),
-        escapeValue(addr.street2.trim()),   // Extended Address (apt, suite, etc.)
-        escapeValue(addr.street.trim()),     // Street
-        escapeValue(addr.city.trim()),       // Locality
-        escapeValue(addr.state.trim()),      // Region
-        escapeValue(addr.zip.trim()),        // Postal Code
-        escapeValue(addr.country.trim()),    // Country
+        escapeValue(addr.street2.trim()), // Extended Address (apt, suite, etc.)
+        escapeValue(addr.street.trim()), // Street
+        escapeValue(addr.city.trim()), // Locality
+        escapeValue(addr.state.trim()), // Region
+        escapeValue(addr.zip.trim()), // Postal Code
+        escapeValue(addr.country.trim()), // Country
       ];
-      lines.push(`ADR;TYPE=${addr.type}:${components.join(';')}`);
+      lines.push(`ADR;TYPE=${addr.type}:${components.join(";")}`);
 
       // Also add a LABEL for display purposes
       const labelParts = [
         addr.street.trim(),
         addr.street2.trim(),
-        [addr.city.trim(), addr.state.trim(), addr.zip.trim()].filter(Boolean).join(', '),
+        [addr.city.trim(), addr.state.trim(), addr.zip.trim()].filter(Boolean).join(", "),
         addr.country.trim(),
       ].filter(Boolean);
       if (labelParts.length > 0) {
-        lines.push(`LABEL;TYPE=${addr.type}:${escapeValue(labelParts.join('\\n'))}`);
+        lines.push(`LABEL;TYPE=${addr.type}:${escapeValue(labelParts.join("\\n"))}`);
       }
 
       // GEO for precise map pin
@@ -185,12 +190,12 @@ export function buildVCard(data: VCardData): string {
   }
 
   // REV — timestamp
-  lines.push(`REV:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z`);
+  lines.push(`REV:${new Date().toISOString().replace(/[-:]/g, "").split(".")[0]}Z`);
 
-  lines.push('END:VCARD');
+  lines.push("END:VCARD");
 
   // vCard spec requires \r\n line endings
-  return lines.join('\r\n');
+  return lines.join("\r\n");
 }
 
 export function hasMinimumData(data: VCardData): boolean {

@@ -1,10 +1,11 @@
-import { handleMcpRequest } from '@/mcp/http';
+import { handleMcpRequest } from "@/mcp/http";
 
 const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Accept, Mcp-Session-Id, Last-Event-ID, Mcp-Protocol-Version',
-  'Access-Control-Expose-Headers': 'Mcp-Session-Id',
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
+  "Access-Control-Allow-Headers":
+    "Content-Type, Accept, Mcp-Session-Id, Last-Event-ID, Mcp-Protocol-Version",
+  "Access-Control-Expose-Headers": "Mcp-Session-Id",
 };
 
 export async function OPTIONS() {

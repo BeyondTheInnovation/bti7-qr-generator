@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Terminal, Plug, Copy, Check, ExternalLink, BookOpen } from 'lucide-react';
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Terminal, Plug, Copy, Check, ExternalLink, BookOpen } from "lucide-react";
 import {
   Popover,
   PopoverContent,
@@ -11,25 +11,26 @@ import {
   PopoverHeader,
   PopoverTitle,
   PopoverDescription,
-} from '@/components/ui/popover';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-  TooltipProvider,
-} from '@/components/ui/tooltip';
+} from "@/components/ui/popover";
+import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip";
 
 function CopySnippet({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
   return (
     <button
-      onClick={() => { navigator.clipboard.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
+      onClick={() => {
+        navigator.clipboard.writeText(text);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }}
       className="group/copy flex items-center gap-1.5 w-full bg-muted px-3 py-2 text-left font-mono text-xs text-foreground transition-colors hover:bg-accent"
     >
       <span className="flex-1 truncate">{text}</span>
-      {copied
-        ? <Check className="size-3 shrink-0 text-green-500" />
-        : <Copy className="size-3 shrink-0 text-muted-foreground group-hover/copy:text-foreground transition-colors" />}
+      {copied ? (
+        <Check className="size-3 shrink-0 text-green-500" />
+      ) : (
+        <Copy className="size-3 shrink-0 text-muted-foreground group-hover/copy:text-foreground transition-colors" />
+      )}
     </button>
   );
 }
@@ -64,7 +65,8 @@ function CliPopover() {
         </div>
         <div className="border-t border-border pt-2 mt-1">
           <p className="text-[11px] text-muted-foreground">
-            Supports vCard, URL, WiFi, email, phone, SMS, events, and more. Use <code className="bg-muted px-1 text-foreground">--help</code> for all options.
+            Supports vCard, URL, WiFi, email, phone, SMS, events, and more. Use{" "}
+            <code className="bg-muted px-1 text-foreground">--help</code> for all options.
           </p>
         </div>
       </PopoverContent>
@@ -98,19 +100,31 @@ function McpPopover() {
           <p className="text-xs text-muted-foreground">Add to Claude Desktop or any MCP client:</p>
           <CopySnippet text="https://qr.beyondtheinnovation.com/mcp" />
           <div className="bg-muted p-3 font-mono text-[11px] leading-relaxed text-muted-foreground">
-            <span className="text-foreground">{'{'}</span>{'\n'}
-            {'  '}<span className="text-foreground">&quot;mcpServers&quot;</span>: {'{'}{'\n'}
-            {'    '}<span className="text-foreground">&quot;qr-generator&quot;</span>: {'{'}{'\n'}
-            {'      '}<span className="text-foreground">&quot;url&quot;</span>: <span className="text-green-500">&quot;https://qr.beyondtheinnovation.com/mcp&quot;</span>{'\n'}
-            {'    '}{'}'}{'\n'}
-            {'  '}{'}'}{'\n'}
-            <span className="text-foreground">{'}'}</span>
+            <span className="text-foreground">{"{"}</span>
+            {"\n"}
+            {"  "}
+            <span className="text-foreground">&quot;mcpServers&quot;</span>: {"{"}
+            {"\n"}
+            {"    "}
+            <span className="text-foreground">&quot;qr-generator&quot;</span>: {"{"}
+            {"\n"}
+            {"      "}
+            <span className="text-foreground">&quot;url&quot;</span>:{" "}
+            <span className="text-green-500">
+              &quot;https://qr.beyondtheinnovation.com/mcp&quot;
+            </span>
+            {"\n"}
+            {"    "}
+            {"}"}
+            {"\n"}
+            {"  "}
+            {"}"}
+            {"\n"}
+            <span className="text-foreground">{"}"}</span>
           </div>
         </div>
         <div className="border-t border-border pt-2 mt-1 flex items-center justify-between">
-          <p className="text-[11px] text-muted-foreground">
-            11 tools &middot; No auth required
-          </p>
+          <p className="text-[11px] text-muted-foreground">11 tools &middot; No auth required</p>
           <Link
             href="/docs/mcp"
             className="inline-flex items-center gap-1 text-[11px] text-muted-foreground hover:text-foreground transition-colors"
@@ -126,7 +140,7 @@ function McpPopover() {
 
 export function SiteNav() {
   const pathname = usePathname();
-  const blogActive = pathname === '/blog' || pathname.startsWith('/blog/');
+  const blogActive = pathname === "/blog" || pathname.startsWith("/blog/");
 
   return (
     <TooltipProvider>
@@ -138,8 +152,8 @@ export function SiteNav() {
           href="/blog"
           className={`inline-flex items-center gap-1.5 text-sm transition-colors ${
             blogActive
-              ? 'text-foreground font-medium'
-              : 'text-muted-foreground hover:text-foreground'
+              ? "text-foreground font-medium"
+              : "text-muted-foreground hover:text-foreground"
           }`}
         >
           <BookOpen className="size-3.5" />

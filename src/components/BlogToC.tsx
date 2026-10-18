@@ -72,10 +72,7 @@ export function BlogToC({ headings, variant }: BlogToCProps) {
 
   // inline — collapsible accordion
   return (
-    <nav
-      aria-label="Table of contents"
-      className="mb-8 border border-border overflow-hidden"
-    >
+    <nav aria-label="Table of contents" className="mb-8 border border-border overflow-hidden">
       <button
         type="button"
         onClick={() => setIsOpen((o) => !o)}

@@ -23,11 +23,12 @@ function PostCard({ post }: { post: BlogPostMeta }) {
     >
       <div className="p-5 flex flex-col gap-3 flex-1 transition-transform duration-200 group-hover:translate-x-1">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-xs text-muted-foreground">
-            {formatDate(post.date)}
-          </span>
+          <span className="text-xs text-muted-foreground">{formatDate(post.date)}</span>
           {post.tags.map((t) => (
-            <span key={t} className="px-1.5 py-0.5 text-[10px] font-medium border border-border text-muted-foreground">
+            <span
+              key={t}
+              className="px-1.5 py-0.5 text-[10px] font-medium border border-border text-muted-foreground"
+            >
               {t}
             </span>
           ))}
@@ -77,9 +78,11 @@ function BlogGridInner({ posts }: { posts: BlogPostMeta[] }) {
 
   return (
     <div className="grid flex-1 min-h-0 lg:grid-cols-[200px_1fr]">
-
       {/* ── Left: Tag navigation ── */}
-      <nav className="border-b border-border lg:border-b-0 lg:border-r border-border shrink-0 lg:overflow-y-auto" aria-label="Blog tags">
+      <nav
+        className="border-b border-border lg:border-b-0 lg:border-r border-border shrink-0 lg:overflow-y-auto"
+        aria-label="Blog tags"
+      >
         <div className="flex flex-row lg:flex-col overflow-x-auto lg:overflow-visible">
           {allTags.map((tag, i) => (
             <button
