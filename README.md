@@ -31,7 +31,8 @@ Multi-format QR code generator with a web app, blog, CLI tool, and MCP server. B
 
 ### Prerequisites
 
-- [Bun](https://bun.sh) v1.0+
+- [Bun](https://bun.sh) at the version pinned in `packageManager`, and Node at
+  the version pinned in `engines.node`
 
 ### Install
 

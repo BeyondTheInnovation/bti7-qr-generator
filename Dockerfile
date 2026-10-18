@@ -1,6 +1,6 @@
-FROM oven/bun:1.4.2-slim AS deps
+FROM oven/bun:1.4.3-slim AS deps
 WORKDIR /app
-COPY package.json bun.lock ./
+COPY package.json bun.lock bunfig.toml ./
 RUN bun install --frozen-lockfile
 
 # Builds on real Node, which serves the app; the bun image's `node` is Bun.

@@ -6,7 +6,7 @@ repo root. Any host that runs an image can serve it.
 ## Image
 
 - build: `docker build .`. The image installs with Bun from `packageManager`,
-  runs `next build` on Node 22, and keeps only the standalone server,
+  runs `next build` on the Node pinned in `engines.node`, and keeps only the standalone server,
   `public/` and `.next/static/`. The blog's MDX files in `src/content/blog`
   are traced into the standalone output. It runs as the unprivileged `node`
   user.
@@ -44,8 +44,11 @@ BTI OS: `bti call projects.fetch id=BTI7 include_metadata=true`.
 
 ## Gate
 
-The repo has no CI workflow and the Railway trigger does not wait for checks.
-Run `bun run lint`, `bun test` and `docker build .` before pushing to `main`.
+`.github/workflows/verify.yml` runs the frozen-lockfile install, lint, the
+typecheck, the tests, the build and the image build on every push to and pull
+request into `main`. Railway deploys on push in parallel with it, so a red check
+holds a deploy back only while the trigger's Wait for CI is on; check that in
+Railway rather than assuming.
 
 ## When a deploy fails
 

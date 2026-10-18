@@ -40,6 +40,7 @@ bun start        # Production server (next start)
 bun run cli      # CLI tool
 bun run mcp      # MCP server over stdio; the remote one is served at /mcp
 bun run lint     # ESLint
+bun run check-types # next typegen, then tsc
 bun test         # Unit tests (bun:test), *.test.ts beside the module
 bun run indexnow # Submit URLs to search engines after deploy
 ```

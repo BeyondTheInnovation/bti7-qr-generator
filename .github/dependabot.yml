@@ -1,0 +1,51 @@
+version: 2
+updates:
+  - package-ecosystem: bun
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 2
+    cooldown:
+      default-days: 3
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+      majors:
+        update-types:
+          - major
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
+
+  - package-ecosystem: docker
+    directories:
+      - /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 1
+    cooldown:
+      default-days: 3
+    # Runtimes are also pinned outside the Dockerfile; the version script moves them.
+    ignore:
+      - dependency-name: oven/bun
+      - dependency-name: node
+      - dependency-name: python
+    groups:
+      images:
+        patterns:
+          - "*"
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 1
+    cooldown:
+      default-days: 3
+    groups:
+      actions:
+        patterns:
+          - "*"

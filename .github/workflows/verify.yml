@@ -1,0 +1,74 @@
+name: Verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: package.json
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Check
+        run: bun run lint
+
+      - name: Typecheck
+        run: bun run check-types
+
+      - name: Test
+        run: bun test
+
+      - name: Build
+        run: bun run build
+
+      - name: Find image inputs
+        id: image
+        uses: dorny/paths-filter@v4
+        with:
+          filters: |
+            changed:
+              - "**/Dockerfile*"
+              - "**/.dockerignore"
+              - "**/package.json"
+              - "**/bun.lock"
+              - "**/bunfig.toml"
+              - "**/next.config.*"
+              - ".github/workflows/**"
+
+      - uses: docker/setup-buildx-action@v4
+        if: steps.image.outputs.changed == 'true'
+
+      - name: Build the deploy image
+        if: steps.image.outputs.changed == 'true'
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: Dockerfile
+          push: false
+          load: false
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
