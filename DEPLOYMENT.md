@@ -4,9 +4,9 @@ The site is a static Next.js export served by a Cloudflare Worker, `bti7-qr-gene
 
 - **Target**: Workers static assets serve `out/`. Static asset requests never invoke the Worker script; `worker/` runs only for `/mcp`, `/api/*` and `/.well-known/mcp/*` (`run_worker_first`).
 - **Code paths**: `/mcp` is the stateless MCP server over Streamable HTTP, `/api/resolve-url` follows short map links for the location type, and `/.well-known/mcp/server-card` describes the MCP server.
-- **Watched ref**: `main` is production.
+- **Watched ref**: Workers Builds is connected at the repository root (`/`) and builds `main` for production. Builds from other branches are disabled.
 - **Build**: `bun install --frozen-lockfile && bun run build`, which writes the export to `out/`, including `_headers` and `_redirects` copied from `public/`.
-- **Deploy**: `bunx wrangler deploy` from the repo root after a build, until Workers Builds is connected to the repo. It uploads changed assets and the Worker.
+- **Deploy**: Workers Builds runs `bunx wrangler deploy` after the build on `main`. It uploads changed assets and the Worker.
 - **Domains**: `qr.beyondtheinnovation.com` and `qr.gamified.studio`, set as custom domains on the Worker.
 - **Health**: `GET /` returns 200 with the generator page.
 - **Environment**: none. The app reads no environment variables at build time or at runtime, and the Worker has no secrets. A `NEXT_PUBLIC_*` variable added later is baked into the export at build time, so it belongs in the build environment.
