@@ -21,6 +21,8 @@ const SITE_NAME = "QR Code Generator";
 
 // ─── Static generation ──────────────────────────────────────────────────────
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
 }

@@ -32,3 +32,8 @@ Thumbs.db
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+.claude/worktrees/
+
+# Cloudflare
+.wrangler/
+.dev.vars

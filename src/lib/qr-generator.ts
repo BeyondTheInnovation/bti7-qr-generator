@@ -1,4 +1,5 @@
-import QRCode from "qrcode";
+// The package's browser field swaps in a build without toBuffer, and Workers bundle with browser conditions.
+import { toBuffer } from "qrcode/lib/server.js";
 import { writeFileSync, mkdirSync } from "fs";
 import { dirname } from "path";
 import { type VCardData, buildVCard, hasMinimumData } from "../vcard";
@@ -30,7 +31,7 @@ export async function generateQRBuffer(data: VCardData, opts: QROptions = {}): P
   const o = { ...defaults, ...opts };
   const vcard = buildVCard(data);
 
-  const buffer = await QRCode.toBuffer(vcard, {
+  const buffer = await toBuffer(vcard, {
     type: "png",
     width: o.width,
     margin: o.margin,
@@ -70,7 +71,7 @@ export async function generateQRFromStringBase64(
   opts: QROptions = {},
 ): Promise<string> {
   const o = { ...defaults, ...opts };
-  const buffer = await QRCode.toBuffer(content, {
+  const buffer = await toBuffer(content, {
     type: "png",
     width: o.width,
     margin: o.margin,

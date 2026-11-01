@@ -6,6 +6,9 @@ import { QR_TYPES } from "@/qr-types";
 export const alt = "QR Code Generator";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+export const dynamic = "force-static";
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return QR_TYPES.filter((t) => t.id !== "vcard").map((t) => ({ type: t.id }));

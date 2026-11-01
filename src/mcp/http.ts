@@ -1,53 +1,41 @@
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { createMcpServer } from "./tools";
 
-const transports = new Map<string, WebStandardStreamableHTTPServerTransport>();
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
+  "Access-Control-Allow-Headers":
+    "Content-Type, Accept, Mcp-Session-Id, Last-Event-ID, Mcp-Protocol-Version",
+  "Access-Control-Expose-Headers": "Mcp-Session-Id",
+};
 
-function createTransport(): WebStandardStreamableHTTPServerTransport {
+// A stateless server never pushes messages, and the SDK would hold a GET open as an idle SSE stream.
+function getNotAllowed(): Response {
+  return Response.json(
+    { jsonrpc: "2.0", error: { code: -32000, message: "Method not allowed." }, id: null },
+    { status: 405, headers: { Allow: "POST, DELETE" } },
+  );
+}
+
+async function respond(req: Request): Promise<Response> {
+  if (req.method === "GET") return getNotAllowed();
   const transport = new WebStandardStreamableHTTPServerTransport({
-    sessionIdGenerator: () => crypto.randomUUID(),
+    sessionIdGenerator: undefined,
     enableJsonResponse: true,
-    onsessioninitialized: (sessionId) => {
-      transports.set(sessionId, transport);
-    },
-    onsessionclosed: (sessionId) => {
-      transports.delete(sessionId);
-    },
   });
-  return transport;
+  await createMcpServer().connect(transport);
+  return transport.handleRequest(req);
 }
 
 /**
- * Handle incoming MCP requests at the /mcp endpoint.
- * Supports stateful sessions with Streamable HTTP transport.
+ * Serves the remote MCP endpoint statelessly: every request gets its own server and transport,
+ * so no session survives between requests and any instance can answer.
  */
 export async function handleMcpRequest(req: Request): Promise<Response> {
-  const sessionId = req.headers.get("mcp-session-id");
-
-  if (sessionId && transports.has(sessionId)) {
-    // Existing session — route to its transport
-    const transport = transports.get(sessionId)!;
-    return transport.handleRequest(req);
+  if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: corsHeaders });
+  const response = await respond(req);
+  for (const [key, value] of Object.entries(corsHeaders)) {
+    response.headers.set(key, value);
   }
-
-  if (sessionId && !transports.has(sessionId)) {
-    // Unknown session ID
-    return new Response(
-      JSON.stringify({
-        jsonrpc: "2.0",
-        error: { code: -32000, message: "Session not found" },
-        id: null,
-      }),
-      {
-        status: 404,
-        headers: { "Content-Type": "application/json" },
-      },
-    );
-  }
-
-  // New session — create transport + server
-  const transport = createTransport();
-  const server = createMcpServer();
-  await server.connect(transport);
-  return transport.handleRequest(req);
+  return response;
 }

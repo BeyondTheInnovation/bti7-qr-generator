@@ -54,15 +54,15 @@ Starts the Next.js dev server with Turbopack at `http://localhost:3000`.
 bun run build
 ```
 
-Runs `next build` and writes the production build to `.next/`.
+Runs `next build` and writes the static export to `out/`.
 
-### Production
+### Preview
 
 ```bash
 bun start
 ```
 
-Runs `next start` against that build. Production runs the image built from the root `Dockerfile`; see `DEPLOYMENT.md`.
+Serves `out/` and the Worker locally with `wrangler dev`, so run a build first. Production is a Cloudflare Worker; see `DEPLOYMENT.md`.
 
 ### Test
 
@@ -150,7 +150,6 @@ src/
     policies/
       privacy/page.tsx       # Privacy policy
       tos/page.tsx           # Terms of service
-    mcp/route.ts             # MCP endpoint (Streamable HTTP)
     sitemap.ts               # Dynamic sitemap
     robots.ts                # robots.txt
   components/
@@ -171,6 +170,7 @@ src/
     stdio.ts                 # Stdio transport (local/Claude Code)
     http.ts                  # HTTP transport handler
   cli/index.ts               # CLI entry point
+worker/                      # Cloudflare Worker: /mcp, /api/resolve-url, MCP server card
 ```
 
 ## License
