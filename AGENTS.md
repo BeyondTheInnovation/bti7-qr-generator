@@ -59,14 +59,14 @@ bun run indexnow # Submit URLs to search engines after deploy
 Production is a static export served by a Cloudflare Worker, deployed from main. `DEPLOYMENT.md` has the Worker, URL rules and deploy steps.
 
 <!-- >>> bti-os-project (managed by BTI OS — refresh with `bti sync`; edit app/public/onboarding/TEAM.md in the bti-os repo, not here) >>> -->
-<!-- bti-os-project: BTI7 · 315d591f0a29 · rendered 2026-10-03 -->
+<!-- bti-os-project: BTI7 · c40f00912894 · rendered 2026-11-01 -->
 
 # BTI7 — QR Generator
 
 This checkout is a Beyond The Innovation project and its code is `BTI7`. Tasks are `BTI7-<n>`; branches are `type/bti7-<n>-short-slug` and commits `BTI7-<n>: imperative description`, with no AI or tool attribution.
 
 - **Status**: live · **Deliverable**: Internal Tool · **Stage**: Internal
-- **Deploys**: Railway; production from `main`
+- **Deploys**: Cloudflare; production from `main`
 
 Ops notes, domains and ids live on the BTI OS record, not here: `bti call projects.fetch id=BTI7 include_metadata=true`. How we work: https://os.beyondtheinnovation.com/onboarding/TEAM.md
 
