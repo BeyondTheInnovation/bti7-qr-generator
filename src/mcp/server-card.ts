@@ -1,6 +1,4 @@
-import { NextResponse } from "next/server";
-
-const serverCard = {
+export const serverCard = {
   $schema: "https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json",
   name: "com.beyondtheinnovation/qr-generator",
   version: "1.0.0",
@@ -27,8 +25,8 @@ const serverCard = {
   },
 };
 
-export async function GET() {
-  return NextResponse.json(serverCard, {
+export function serverCardResponse(): Response {
+  return Response.json(serverCard, {
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Cache-Control": "public, max-age=3600",

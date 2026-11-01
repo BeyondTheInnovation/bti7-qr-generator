@@ -12,15 +12,13 @@ Multi-format QR code generator with web app, blog, CLI, and MCP server. Next.js 
 | QR         | qr-code-styling (web), qrcode (CLI/MCP)                                |
 | Blog       | MDX (next-mdx-remote/rsc), gray-matter, rehype-pretty-code, remark-gfm |
 | CLI        | Bun executable (`bun run src/cli/index.ts`)                            |
-| MCP        | @modelcontextprotocol/sdk (route handler + stdio)                      |
+| MCP        | @modelcontextprotocol/sdk (Worker + stdio)                             |
 
 ## Structure
 
 ```
 src/
   app/                 Routes: home and [type] generators, vcard (and bulk), blog, docs/mcp, policies
-  app/mcp/route.ts     Remote MCP endpoint (Streamable HTTP); its server card is under .well-known/mcp
-  app/api/resolve-url/ Follows short links (Google Maps) server-side for the location type
   components/          Page components; ui/ holds the shadcn primitives
   content/blog/        MDX posts
   lib/                 QR generation, blog loading and ToC, OG image helper, coordinate parsing, cn()
@@ -28,6 +26,7 @@ src/
   seo.ts               Per-route SEO metadata
   mcp/                 Tool definitions (tools.ts), HTTP and stdio transports
   cli/index.ts         CLI entry point
+worker/index.ts        Cloudflare Worker: remote MCP endpoint, resolve-url, MCP server card
 scripts/indexnow.ts    Post-deploy search engine notification
 ```
 
@@ -35,8 +34,8 @@ scripts/indexnow.ts    Post-deploy search engine notification
 
 ```bash
 bun dev          # Next.js dev server (Turbopack) :3000
-bun run build    # Next.js production build
-bun start        # Production server (next start)
+bun run build    # Next.js static export to out/
+bun start        # Serve out/ and the Worker locally (wrangler dev), after a build
 bun run cli      # CLI tool
 bun run mcp      # MCP server over stdio; the remote one is served at /mcp
 bun run lint     # oxlint
@@ -52,12 +51,12 @@ bun run indexnow # Submit URLs to search engines after deploy
 - **Class names** go through `cn()` from `@/lib/utils`
 - **Client components**: the QR generator, bulk vCard, and interactive blog components
 - **Styling**: Tailwind v4 + CSS vars in `src/index.css`. Never hardcode colors — use theme vars
-- **CLI/MCP**: `src/cli` and `src/mcp/stdio.ts` run under Bun, import with `.ts` extensions and are excluded from tsconfig. `src/mcp/tools.ts` and `http.ts` are part of the Next build
+- **CLI/MCP**: `src/cli` and `src/mcp/stdio.ts` run under Bun, import with `.ts` extensions and are excluded from tsconfig. `src/mcp/tools.ts` is shared by the stdio server and the Worker
 - **Tests**: `*.test.ts` files import from `bun:test` and are excluded from tsconfig, so the Next build never type-checks them
 
 ## Deployment
 
-Production deploys from main on Railway, built from the root `Dockerfile`. `DEPLOYMENT.md` has the image, environment and service settings.
+Production is a static export served by a Cloudflare Worker, deployed from main. `DEPLOYMENT.md` has the Worker, URL rules and deploy steps.
 
 <!-- >>> bti-os-project (managed by BTI OS — refresh with `bti sync`; edit app/public/onboarding/TEAM.md in the bti-os repo, not here) >>> -->
 <!-- bti-os-project: BTI7 · 315d591f0a29 · rendered 2026-10-03 -->

@@ -45,30 +45,5 @@ jobs:
       - name: Build
         run: bun run build
 
-      - name: Find image inputs
-        id: image
-        uses: dorny/paths-filter@v4
-        with:
-          filters: |
-            changed:
-              - "**/Dockerfile*"
-              - "**/.dockerignore"
-              - "**/package.json"
-              - "**/bun.lock"
-              - "**/bunfig.toml"
-              - "**/next.config.*"
-              - ".github/workflows/**"
-
-      - uses: docker/setup-buildx-action@v4
-        if: steps.image.outputs.changed == 'true'
-
-      - name: Build the deploy image
-        if: steps.image.outputs.changed == 'true'
-        uses: docker/build-push-action@v7
-        with:
-          context: .
-          file: Dockerfile
-          push: false
-          load: false
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+      - name: Check the Worker bundle
+        run: bunx wrangler deploy --dry-run

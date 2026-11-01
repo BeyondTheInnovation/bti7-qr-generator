@@ -32,19 +32,6 @@ export function SiteFooter() {
             <span className="hand-underline">Beyond The Innovation</span>
           </a>
         </span>
-        <a
-          href="https://railway.com?referralCode=_xv-mn"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden sm:inline-flex items-center gap-1.5 text-foreground"
-        >
-          <img
-            src="https://avatars.githubusercontent.com/u/66716858?s=200&v=4"
-            alt="Railway"
-            className="h-4 w-4 rounded-full"
-          />
-          <span className="hand-underline">Deployed on Railway</span>
-        </a>
       </div>
     </footer>
   );

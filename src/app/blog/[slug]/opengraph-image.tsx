@@ -4,6 +4,9 @@ import { getAllPosts, getPost } from "@/lib/blog";
 export const alt = "QR Code Generator — Blog";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+export const dynamic = "force-static";
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));

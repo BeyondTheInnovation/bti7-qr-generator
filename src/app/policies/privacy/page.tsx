@@ -67,11 +67,11 @@ export default function PrivacyPolicy() {
           <section>
             <h2 className="text-xl font-semibold mb-3">Server Logs</h2>
             <p>
-              Our hosting provider (Railway) may collect standard HTTP access logs (IP address,
+              Our hosting provider (Cloudflare) may collect standard HTTP access logs (IP address,
               request path, timestamp, user agent) as part of normal infrastructure operations.
-              These logs are managed by Railway under their own{" "}
+              These logs are managed by Cloudflare under their own{" "}
               <a
-                href="https://railway.com/legal/privacy"
+                href="https://www.cloudflare.com/privacypolicy/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline underline-offset-4 hover:text-[var(--foreground)]"

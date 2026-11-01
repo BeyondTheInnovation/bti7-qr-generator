@@ -7,7 +7,7 @@ updates:
     open-pull-requests-limit: 2
     cooldown:
       default-days: 3
-    # Node's types follow the Node line the image runs, which moves by hand.
+    # Node's types follow the Node line pinned in engines.node, which moves by hand.
     ignore:
       - dependency-name: "@types/node"
         update-types:
@@ -22,24 +22,6 @@ updates:
           - major
       security:
         applies-to: security-updates
-        patterns:
-          - "*"
-
-  - package-ecosystem: docker
-    directories:
-      - /
-    schedule:
-      interval: weekly
-    open-pull-requests-limit: 1
-    cooldown:
-      default-days: 3
-    # Runtimes are also pinned outside the Dockerfile; the version script moves them.
-    ignore:
-      - dependency-name: oven/bun
-      - dependency-name: node
-      - dependency-name: python
-    groups:
-      images:
         patterns:
           - "*"
 

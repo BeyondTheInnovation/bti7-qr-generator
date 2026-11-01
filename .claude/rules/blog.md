@@ -263,4 +263,4 @@ You do NOT need to add JSON-LD manually. Just follow the Quick Answer and FAQ Q:
 
 ## Redirects
 
-When renaming a post slug, add a permanent redirect in `next.config.ts`. Check the file for current redirects — do NOT maintain a list here.
+When renaming a post slug, add a permanent (308) redirect in `public/_redirects`. Check the file for current redirects — do NOT maintain a list here.

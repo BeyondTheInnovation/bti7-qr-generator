@@ -3,8 +3,8 @@
 import { cn } from "@/lib/utils";
 import { Clock, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState, useSyncExternalStore } from "react";
 import type { BlogPostMeta } from "@/lib/blog";
 
 function formatDate(dateStr: string) {
@@ -54,16 +54,20 @@ function PostCard({ post }: { post: BlogPostMeta }) {
   );
 }
 
-function BlogGridInner({ posts }: { posts: BlogPostMeta[] }) {
-  const searchParams = useSearchParams();
+const subscribeNever = () => () => {};
+const readTag = () => new URLSearchParams(window.location.search).get("tag");
+
+export function BlogGrid({ posts }: { posts: BlogPostMeta[] }) {
   const router = useRouter();
-  const [active, setActive] = useState(searchParams.get("tag") ?? "All");
+  const urlTag = useSyncExternalStore(subscribeNever, readTag, () => null);
+  const [picked, setPicked] = useState<string | null>(null);
+  const active = picked ?? urlTag ?? "All";
 
   const allTags = ["All", ...Array.from(new Set(posts.flatMap((p) => p.tags)))];
   const filtered = active === "All" ? posts : posts.filter((p) => p.tags.includes(active));
 
   function select(tag: string) {
-    setActive(tag);
+    setPicked(tag);
     const url = tag === "All" ? "/blog" : `/blog?tag=${encodeURIComponent(tag)}`;
     router.replace(url, { scroll: false });
   }
@@ -169,13 +173,5 @@ function BlogGridInner({ posts }: { posts: BlogPostMeta[] }) {
         )}
       </div>
     </div>
-  );
-}
-
-export function BlogGrid({ posts }: { posts: BlogPostMeta[] }) {
-  return (
-    <Suspense>
-      <BlogGridInner posts={posts} />
-    </Suspense>
   );
 }

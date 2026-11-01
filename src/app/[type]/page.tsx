@@ -3,6 +3,8 @@ import QRGenerator from "@/components/QRGenerator";
 import { PAGE_SEO, getCanonicalURL } from "@/seo";
 import { QR_TYPES } from "@/qr-types";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return QR_TYPES.filter((t) => t.id !== "vcard").map((t) => ({ type: t.id }));
 }

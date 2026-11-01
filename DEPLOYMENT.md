@@ -1,56 +1,38 @@
 # Deployment
 
-The QR generator ships as a container image built from the `Dockerfile` at the
-repo root. Any host that runs an image can serve it.
+The site is a static Next.js export served by a Cloudflare Worker, `bti7-qr-generator`, configured in `wrangler.jsonc`.
 
-## Image
+- **Target**: Workers static assets serve `out/`. Static asset requests never invoke the Worker script; `worker/` runs only for `/mcp`, `/api/*` and `/.well-known/mcp/*` (`run_worker_first`).
+- **Code paths**: `/mcp` is the stateless MCP server over Streamable HTTP, `/api/resolve-url` follows short map links for the location type, and `/.well-known/mcp/server-card` describes the MCP server.
+- **Watched ref**: `main` is production.
+- **Build**: `bun install --frozen-lockfile && bun run build`, which writes the export to `out/`, including `_headers` and `_redirects` copied from `public/`.
+- **Deploy**: `bunx wrangler deploy` from the repo root after a build, until Workers Builds is connected to the repo. It uploads changed assets and the Worker.
+- **Domains**: `qr.beyondtheinnovation.com` and `qr.gamified.studio`, set as custom domains on the Worker.
+- **Health**: `GET /` returns 200 with the generator page.
+- **Environment**: none. The app reads no environment variables at build time or at runtime, and the Worker has no secrets. A `NEXT_PUBLIC_*` variable added later is baked into the export at build time, so it belongs in the build environment.
 
-- build: `docker build .`. The image installs with Bun from `packageManager`,
-  runs `next build` on the Node pinned in `engines.node`, and keeps only the standalone server,
-  `public/` and `.next/static/`. The blog's MDX files in `src/content/blog`
-  are traced into the standalone output. It runs as the unprivileged `node`
-  user.
-- start: the image `CMD`, `node server.js`. No start command is needed on the
-  host.
-- port: `$PORT`, default `3000`. The server binds `0.0.0.0`.
-- health: `/` returns 200.
-- release command: none. There is no database and nothing to migrate.
+## URL rules
 
-## Environment
+`wrangler.jsonc` (`html_handling: "auto-trailing-slash"`, `not_found_handling: "404-page"`), `public/_redirects` and `public/_headers` keep the site's URLs:
 
-The app reads no environment variables at build time or at runtime beyond
-`PORT`. A `NEXT_PUBLIC_*` variable added later is baked into the bundle at
-build time and must also be declared as an `ARG` in the build stage of the
-`Dockerfile`.
+- `/page` serves `page.html`; `/page.html`, `/index` and `/index.html` redirect (301) to the clean URL.
+- `/privacy` redirects (307) to `/policies/privacy`, and the renamed blog post redirects (308) to `/blog/hello-world`. Add a line to `public/_redirects` when a post slug changes.
+- A trailing slash reaches a page by redirecting (307) to its clean URL, and never reaches a file. Directories are not listed.
+- An unknown path returns `404.html` with status 404.
+- `/_next/static/*` is cached for a year as immutable; everything else is `no-cache`, so browsers revalidate by ETag. Every asset carries `X-Content-Type-Options: nosniff`.
+- Cloudflare compresses text responses at the edge.
 
-## Environments
+## Local preview
 
-| Environment | Watched branch | Domains                                        |
-| ----------- | -------------- | ---------------------------------------------- |
-| production  | `main`         | qr.beyondtheinnovation.com, qr.gamified.studio |
-
-A push to `main` deploys. Nothing else triggers a release.
-
-## Railway
-
-Production runs on Railway. The service builds from the `Dockerfile` with no
-build or start command of its own, so the image `CMD` starts it. The health
-check path (`/`) and its timeout, the restart policy, the watched branch and
-the domains are set on the service. The service has no watch patterns, so
-every push to `main` rebuilds.
-
-Project, environment and service ids are not recorded here. Read them from
-BTI OS: `bti call projects.fetch id=BTI7 include_metadata=true`.
+```sh
+bun run build
+bunx wrangler dev
+```
 
 ## Gate
 
-`.github/workflows/verify.yml` runs the frozen-lockfile install, the lint and
-format check, the typecheck, the tests, the build and the image build on every push to and pull
-request into `main`. Railway deploys on push in parallel with it, so a red check
-holds a deploy back only while the trigger's Wait for CI is on; check that in
-Railway rather than assuming.
+`.github/workflows/verify.yml` runs the frozen-lockfile install, the lint and format check, the typecheck, the tests, the build and `bunx wrangler deploy --dry-run` on every push to and pull request into `main`. The dry run bundles the Worker without deploying, so a Worker that does not bundle fails the check.
 
 ## When a deploy fails
 
-See `~/.claude/reference/deployment.md` for the shared contract and
-`~/.claude/reference/railway.md` for Railway mechanics.
+See `~/.claude/reference/deployment.md` for the shared contract.
