@@ -1,0 +1,20 @@
+name: Security
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+  security-events: write
+
+jobs:
+  gitleaks:
+    uses: BeyondTheInnovation/.github/.github/workflows/gitleaks.yml@main
+    secrets: inherit
+
+  security-review:
+    uses: BeyondTheInnovation/.github/.github/workflows/security-review.yml@main
+    secrets: inherit
