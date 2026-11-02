@@ -11,10 +11,7 @@ export function HomeSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        ...ORGANIZATION,
-        description: "Builds the Free QR Code Generator at qr.beyondtheinnovation.com.",
-      },
+      ORGANIZATION,
       {
         "@type": "WebSite",
         "@id": "https://qr.beyondtheinnovation.com/#website",
