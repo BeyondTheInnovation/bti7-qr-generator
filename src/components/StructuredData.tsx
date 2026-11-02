@@ -1,3 +1,40 @@
+const ORGANIZATION = {
+  "@type": "Organization",
+  "@id": "https://beyondtheinnovation.com/#organization",
+  name: "Beyond The Innovation",
+  url: "https://beyondtheinnovation.com",
+  logo: "https://avatars.githubusercontent.com/u/260061373?v=4",
+  sameAs: ["https://github.com/BeyondTheInnovation"],
+};
+
+export function HomeSchema() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        ...ORGANIZATION,
+        description: "Builds the Free QR Code Generator at qr.beyondtheinnovation.com.",
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://qr.beyondtheinnovation.com/#website",
+        name: "Free QR Code Generator",
+        url: "https://qr.beyondtheinnovation.com/",
+        description:
+          "Generate custom QR codes for free. Create QR codes for URLs, vCards, WiFi passwords, emails, phone numbers, SMS, calendar events, and more.",
+        publisher: { "@id": ORGANIZATION["@id"] },
+      },
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 export function WebApplicationSchema() {
   const schema = {
     "@context": "https://schema.org",
