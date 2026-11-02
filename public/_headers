@@ -1,6 +1,7 @@
 /*
   Cache-Control: no-cache
   X-Content-Type-Options: nosniff
+  Link: </sitemap.xml>; rel="sitemap", </.well-known/mcp/server-card.json>; rel="service-desc"
 
 /_next/static/*
   ! Cache-Control
@@ -11,3 +12,6 @@
 
 /*/opengraph-image
   Content-Type: image/png
+
+/*.md
+  X-Robots-Tag: noindex
