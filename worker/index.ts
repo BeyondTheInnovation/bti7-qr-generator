@@ -1,6 +1,7 @@
 import { resolveUrl } from "../src/lib/resolve-url";
 import { handleMcpRequest } from "../src/mcp/http";
 import { serverCardResponse } from "../src/mcp/server-card";
+import { negotiate } from "./markdown";
 
 interface Env {
   ASSETS: { fetch(request: Request): Promise<Response> };
@@ -30,11 +31,16 @@ const worker = {
     const { pathname } = new URL(request.url);
     if (pathname === "/mcp") return handleMcpRequest(request);
     if (pathname === "/api/resolve-url") return getOnly(request, () => resolveUrl(request));
-    if (pathname === "/.well-known/mcp/server-card") return getOnly(request, serverCardResponse);
+    if (
+      pathname === "/.well-known/mcp/server-card" ||
+      pathname === "/.well-known/mcp/server-card.json"
+    ) {
+      return getOnly(request, serverCardResponse);
+    }
     if (pathname.startsWith("/api/") || pathname.startsWith("/.well-known/mcp/")) {
       return notFound(request, env);
     }
-    return env.ASSETS.fetch(request);
+    return negotiate(request, env.ASSETS);
   },
 };
 

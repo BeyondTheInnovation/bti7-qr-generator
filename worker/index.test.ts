@@ -29,6 +29,13 @@ test("serves the server card on GET and drops the body on HEAD", async () => {
   expect(await head.text()).toBe("");
 });
 
+test("serves the server card at the .json path too, GET only", async () => {
+  const res = await call("/.well-known/mcp/server-card.json");
+  expect(res.status).toBe(200);
+  expect(await res.json()).toEqual(await (await call("/.well-known/mcp/server-card")).json());
+  expect((await call("/.well-known/mcp/server-card.json", "POST")).status).toBe(405);
+});
+
 test("limits resolve-url to GET, HEAD and OPTIONS", async () => {
   const options = await call("/api/resolve-url", "OPTIONS");
   expect(options.status).toBe(204);
