@@ -1,6 +1,7 @@
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import { join, relative } from "node:path";
 import { NodeHtmlMarkdown } from "node-html-markdown";
+import { QR_TYPES } from "../src/qr-types";
 
 const OUT = join(import.meta.dirname, "..", "out");
 const SITE_URL = "https://qr.beyondtheinnovation.com";
@@ -33,21 +34,10 @@ function decode(text: string): string {
     .replace(/&#x27;|&#39;/g, "'");
 }
 
-const GENERATORS = [
-  "url",
-  "vcard",
-  "wifi",
-  "email",
-  "phone",
-  "sms",
-  "event",
-  "mecard",
-  "text",
-  "x-profile",
-];
-
 function generatorList(): string {
-  return GENERATORS.map((type) => `- [${type}](${SITE_URL}/${type})`).join("\n");
+  return QR_TYPES.map(
+    ({ id, label, description }) => `- [${label}](${SITE_URL}/${id}): ${description}`,
+  ).join("\n");
 }
 
 let written = 0;
