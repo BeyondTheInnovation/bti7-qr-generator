@@ -2,8 +2,8 @@
 
 The site is a static Next.js export served by a Cloudflare Worker, `bti7-qr-generator`, configured in `wrangler.jsonc`.
 
-- **Target**: Workers static assets serve `out/`. Static asset requests never invoke the Worker script; `worker/` runs only for `/mcp`, `/api/*` and `/.well-known/mcp/*` (`run_worker_first`).
-- **Code paths**: `/mcp` is the stateless MCP server over Streamable HTTP, `/api/resolve-url` follows short map links for the location type, and `/.well-known/mcp/server-card` describes the MCP server.
+- **Target**: Workers static assets serve `out/`. Static asset requests never invoke the Worker script; `worker/` runs only for `/mcp`, `/api/*`, `/.well-known/mcp/*` and the HTML page paths (`run_worker_first`). Add a new page route there so it can serve markdown.
+- **Code paths**: `/mcp` is the stateless MCP server over Streamable HTTP, `/api/resolve-url` follows short map links for the location type, and `/.well-known/mcp/server-card` (also at `.json`) describes the MCP server. A page requested with `Accept: text/markdown` gets its `.md` twin, which `scripts/markdown-twins.ts` writes into `out/` after `next build`.
 - **Watched ref**: Workers Builds is connected at the repository root (`/`) and builds `main` for production. Builds from other branches are disabled.
 - **Build**: `bun install --frozen-lockfile && bun run build`, which writes the export to `out/`, including `_headers` and `_redirects` copied from `public/`.
 - **Deploy**: Workers Builds runs `bunx wrangler deploy` after the build on `main`. It uploads changed assets and the Worker.
