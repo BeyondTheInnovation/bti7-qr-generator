@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import QRGenerator from "@/components/QRGenerator";
+import { HomeSchema, WebApplicationSchema } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
   title: "Free QR Code Generator — URLs, vCards, WiFi, Events & More",
@@ -8,5 +9,11 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  return <QRGenerator />;
+  return (
+    <>
+      <HomeSchema />
+      <WebApplicationSchema />
+      <QRGenerator />
+    </>
+  );
 }

@@ -1,7 +1,7 @@
 /*
   Cache-Control: no-cache
   X-Content-Type-Options: nosniff
-  Link: </sitemap.xml>; rel="sitemap", </.well-known/mcp/server-card.json>; rel="service-desc"
+  Link: </sitemap.xml>; rel="sitemap", </llms.txt>; rel="describedby"; type="text/plain", </.well-known/mcp/server-card.json>; rel="service-desc"
 
 /_next/static/*
   ! Cache-Control
