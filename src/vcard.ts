@@ -169,7 +169,7 @@ export function buildVCard(data: VCardData): string {
         addr.country.trim(),
       ].filter(Boolean);
       if (labelParts.length > 0) {
-        lines.push(`LABEL;TYPE=${addr.type}:${escapeValue(labelParts.join("\\n"))}`);
+        lines.push(`LABEL;TYPE=${addr.type}:${escapeValue(labelParts.join("\n"))}`);
       }
 
       // GEO for precise map pin
