@@ -51,6 +51,32 @@ describe("buildVCard", () => {
     expect(out).toContain("GEO:39.78,-89.65");
   });
 
+  test("separates address label lines with a single escaped newline", () => {
+    const out = lines(
+      buildVCard(
+        card({
+          firstName: "Jane",
+          addresses: [
+            {
+              type: "WORK",
+              poBox: "",
+              street2: "Suite 4",
+              street: "123 Main St",
+              city: "Springfield",
+              state: "IL",
+              zip: "62701",
+              country: "US",
+              geo: "",
+            },
+          ],
+        }),
+      ),
+    );
+    expect(out).toContain(
+      "LABEL;TYPE=WORK:123 Main St\\nSuite 4\\nSpringfield\\, IL\\, 62701\\nUS",
+    );
+  });
+
   test("skips blank phones, emails and empty addresses", () => {
     const out = buildVCard(
       card({
