@@ -1,8 +1,9 @@
 name: Verify
 
 on:
-  push:
-    branches: [main]
+  # CI runs only on pull requests into main, which is how a release reaches
+  # production. A push to any branch, and a pull request into any other
+  # branch, runs nothing.
   pull_request:
     branches: [main]
 

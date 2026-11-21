@@ -31,7 +31,7 @@ bunx wrangler dev
 
 ## Gate
 
-`.github/workflows/verify.yml` runs the frozen-lockfile install, the lint and format check, the typecheck, the tests, the build and `bunx wrangler deploy --dry-run` on every push to and pull request into `main`. The dry run bundles the Worker without deploying, so a Worker that does not bundle fails the check.
+`.github/workflows/verify.yml` runs the frozen-lockfile install, the lint and format check, the typecheck, the tests, the build and `bunx wrangler deploy --dry-run` on every pull request into `main`. The dry run bundles the Worker without deploying, so a Worker that does not bundle fails the check.
 
 ## When a deploy fails
 
